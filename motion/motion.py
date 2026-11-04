@@ -30,6 +30,8 @@ INGREDIENTS = ["œuf", "sucre roux", "farine", "beurre", "pépites chocolat"]
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("-o", "--sortie", default=str(ICI / "sorties" / "cookie-motion.mp4"))
+    ap.add_argument("--accroche-video", help="clip vidéo (ex. Veo) pour l'accroche, à la place de l'animation")
+    ap.add_argument("--accroche-debut", type=float, default=0.0, help="seconde de départ dans le clip d'accroche")
     a = ap.parse_args()
     sortie = Path(a.sortie)
     sortie.parent.mkdir(parents=True, exist_ok=True)
@@ -54,6 +56,7 @@ def main():
             sfx.append(("whoosh", t0 - 0.2, 0.6))
         t0 += d
     T["total"] = round(t0, 3)
+    T["hookVideo"] = bool(a.accroche_video)
     p = T["prep"][0]
     sfx += [("pop", T["hook"][0] + 0.15, .5), ("pop", T["hook"][0] + .35, .5), ("pop", T["hook"][0] + .55, .5),
             ("tick", T["hook"][0] + 1.1, .7), ("whoosh", p + .45, .5), ("pop", p + .6, .5),
@@ -64,11 +67,25 @@ def main():
 
     print("▶ Animation (rendu image par image)")
     run(["node", str(ICI / "frames.js"), str(tmp / "timeline.json"), str(tmp / "anim.mp4")])
+    video = tmp / "anim.mp4"
+    if a.accroche_video:  # clip réel + calque des titres, puis l'animation
+        dh = T["hook"][1]
+        run(["ffmpeg", "-y", "-v", "error", "-ss", str(a.accroche_debut), "-t", f"{dh:.3f}", "-i", a.accroche_video,
+             "-framerate", "30", "-i", str(tmp / "anim.mp4_hook" / "%04d.png"), "-i", str(tmp / "anim.mp4"),
+             "-filter_complex",
+             "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,setsar=1,"
+             "eq=contrast=1.05:saturation=1.08[cv];[cv][1:v]overlay=0:0:shortest=1,format=yuv420p[h];"
+             "[2:v]setsar=1,format=yuv420p[r];[h][r]concat=n=2:v=1:a=0[v]",
+             "-map", "[v]", "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", str(tmp / "mix.mp4")])
+        run(["ffmpeg", "-y", "-v", "error", "-ss", str(a.accroche_debut), "-t", f"{dh:.3f}", "-i", a.accroche_video,
+             "-vn", "-ac", "2", "-ar", "48000", str(tmp / "hook_son.wav")])
+        pistes.append((tmp / "hook_son.wav", 0.0))
+        video = tmp / "mix.mp4"
 
     print("▶ Voix, bruitages, sous-titres, export")
     ass = tmp / "st.ass"
     fichier_ass(mots, ass, {"marge_bas_sous_titres": 470, "taille_sous_titres": 78})
-    entrees = ["-i", str(tmp / "anim.mp4")]
+    entrees = ["-i", str(video)]
     fc, labels, n = [], [], 1
     for mp3, dec in pistes:
         entrees += ["-i", str(mp3)]

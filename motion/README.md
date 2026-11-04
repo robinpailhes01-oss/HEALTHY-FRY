@@ -23,3 +23,14 @@ Le résultat arrive dans `motion/sorties/cookie-motion.mp4` (environ 4 min de re
 | `cut/` | Objets détourés (générés avec Nano Banana 2.1 sur kie.ai à 4 crédits l'image, puis détourés avec `rembg`) |
 
 **Coût d'une nouvelle recette : environ 8 à 10 images à 4 crédits, soit environ 0,20 $.**
+
+## Accroche filmée (Veo) + motion design
+
+Les 3 premières secondes sont un vrai clip vidéo (par exemple Veo 3.1, avec son vrai son), avec le titre animé par-dessus.
+Un flash blanc enchaîne ensuite sur le motion design.
+
+```bash
+python3 motion/motion.py --accroche-video montage/exemple/veo/veo_hook.mp4 --accroche-debut 2.6 -o motion/sorties/cookie-motion-veo.mp4
+```
+
+Coût : 1 clip Veo 3.1 Fast (65 crédits ≈ 0,33 $) + environ 10 images (≈ 0,20 $), soit **environ 0,50 $ par vidéo**.
