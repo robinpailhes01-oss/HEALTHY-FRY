@@ -85,3 +85,43 @@ Options par segment :
 `exemple/` contient une recette de démo (le cookie fondant, qui avait fait 211k vues en carrousel).
 Les visuels sont des **photos tirées des anciens carrousels**, juste pour tester le pipeline.
 La prochaine étape remplace ces photos par des **clips vidéo IA** générés automatiquement.
+
+## Visuels 100 % IA avec kie.ai (sans rien filmer)
+
+Chaque segment de la recette peut décrire ses plans IA au lieu d'un `rush` :
+
+```jsonc
+"style_visuel": "Warm soft natural window light, light oak kitchen counter, beige linen cloth, cream ceramic tableware…",
+"segments": [
+  { "type": "etape", "voix": "…", "ecran": { "num": 1, "texte": "Beurre mou + sucre" },
+    "ia": [ { "id": "melange_beurre",
+              "image": "Top view of a cream ceramic mixing bowl containing soft butter and brown sugar, a metal whisk",
+              "video": "A hand whisks the soft butter and brown sugar together until creamy, top-down view",
+              "modele": "wan" } ] }
+]
+```
+
+Commandes, dans l'ordre :
+
+```bash
+export KIE_API_KEY=ta_cle
+```
+
+```bash
+python3 montage/generer_visuels.py montage/exemple/cookie-fondant-ia.json --estimer
+```
+
+```bash
+python3 montage/generer_visuels.py montage/exemple/cookie-fondant-ia.json
+```
+
+```bash
+python3 montage/render.py montage/exemple/cookie-fondant-ia.json
+```
+
+- Chaque plan = 1 image **Nano Banana 2.1** (4 crédits), animée en clip de 5 s 720p par **Wan 2.6 Flash** (20 crédits) ou **Seedance 2.0 Mini** (41 crédits, plus réaliste, à réserver à l'accroche).
+- Les clips sont mis en cache dans `ia/` : relancer ne repaie rien. Pour refaire un plan raté, supprime son `.mp4`.
+- Le `style_visuel` commun à tous les plans garde le même décor d'un plan à l'autre.
+
+**Coût réel de la vidéo d'exemple : 1 plan Seedance + 10 plans Wan ≈ 285 crédits ≈ 1,40 $.**
+En réutilisant le même plan d'accroche à la fin (effet boucle) et en restant sur Wan : **environ 1,20 $ par vidéo**.

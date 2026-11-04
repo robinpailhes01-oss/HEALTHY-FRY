@@ -245,23 +245,41 @@ def plans_photo(chemin, d, idx_seg, premier, entrees, filtres, prefixe):
     return f"[{prefixe}out]", k
 
 
-def plan_video(chemin, d, seg, entrees, filtres, prefixe):
-    """Clip vidéo cadré plein écran, ralenti/figé s'il est trop court."""
+def plan_video(chemin, d, seg, entrees, filtres, prefixe, idx=0):
+    """Clip vidéo plein écran. Trop court : léger ralenti, puis aller-retour (boomerang).
+    Long à l'écran : recoupé en plans de ~2,5 s alternant cadrage large et cadrage serré."""
     debut = float(seg.get("debut", 0))
     dispo = max(0.1, duree(chemin) - debut)
     vitesse = float(seg.get("vitesse", 1.0))
     utile = dispo / vitesse
-    tempo = f"setpts=PTS/{vitesse}," if vitesse != 1.0 else ""
     if utile < d:
-        ralenti = max(0.6, utile / d)
-        tempo = f"setpts=PTS/{vitesse * ralenti:.4f},"
-        utile = dispo / (vitesse * ralenti)
-    gel = f",tpad=stop_mode=clone:stop_duration={max(0, d - utile) + 0.1:.3f}" if utile < d else ""
+        vitesse *= max(0.75, utile / d)
+        utile = dispo / vitesse
+    boomerang = utile < d
+    if boomerang:
+        utile *= 2
+    gel = f",tpad=stop_mode=clone:stop_duration={d - utile + 0.1:.3f}" if utile < d else ""
     entrees += ["-ss", f"{debut:.3f}", "-i", str(chemin)]
     k = entrees.count("-i") - 1
-    mode = seg.get("cadrage", "cover")
-    filtres.append(f"[{k}:v]{tempo}{cadrage(mode)},fps={FPS}{gel},trim=duration={d:.3f},"
-                   f"setpts=PTS-STARTPTS,setsar=1,format=yuv420p[{prefixe}out]")
+    chaine = f"[{k}:v]trim=duration={dispo:.3f},setpts=(PTS-STARTPTS)/{vitesse:.4f},fps={FPS}"
+    if boomerang:
+        chaine += f",split[{prefixe}f][{prefixe}b];[{prefixe}b]reverse[{prefixe}rv];[{prefixe}f][{prefixe}rv]concat=n=2:v=1:a=0"
+    chaine += (f",{cadrage(seg.get('cadrage', 'cover'))}{gel},trim=duration={d:.3f},"
+               f"setpts=PTS-STARTPTS,setsar=1,format=yuv420p")
+    n = max(1, round(d / 2.5))
+    if n == 1:
+        filtres.append(chaine + f"[{prefixe}out]")
+        return f"[{prefixe}out]", k
+    filtres.append(chaine + f",split={n}" + "".join(f"[{prefixe}s{i}]" for i in range(n)))
+    di, labels = d / n, []
+    for i in range(n):
+        f = f"[{prefixe}s{i}]trim=start={i * di:.3f}:duration={di:.3f},setpts=PTS-STARTPTS"
+        if (i + idx) % 2 == 1:  # plan serré
+            fx, fy = [(0.5, 0.45), (0.35, 0.55), (0.65, 0.5)][(i + idx) % 3]
+            f += f",crop=iw/1.3:ih/1.3:(iw-iw/1.3)*{fx}:(ih-ih/1.3)*{fy},scale={W}:{H}"
+        filtres.append(f + f",setsar=1[{prefixe}p{i}]")
+        labels.append(f"[{prefixe}p{i}]")
+    filtres.append("".join(labels) + f"concat=n={n}:v=1:a=0[{prefixe}out]")
     return f"[{prefixe}out]", k
 
 
@@ -278,7 +296,7 @@ def rendu_plan(seg, dossier, d, ov_concat, voix_mp3, sortie, idx):
         if r.suffix.lower() in EXTS_IMAGE:
             lab, _ = plans_photo(r, part, idx + i, seg.get("type") == "hook" and i == 0, entrees, filtres, f"r{i}")
         else:
-            lab, k = plan_video(r, part, seg, entrees, filtres, f"r{i}")
+            lab, k = plan_video(r, part, seg, entrees, filtres, f"r{i}", idx + i)
             if a_audio(r) and float(seg.get("son_rush", 0.35)) > 0:
                 audio_clip.append((k, part, i * part))
         labels.append(lab)
@@ -336,6 +354,9 @@ def main():
     voix = r.get("voix", VOIX_DEFAUT)
     cible = float(r.get("duree_min", 62))
     segs = r["segments"]
+    for s in segs:  # visuels IA générés par generer_visuels.py
+        if "rush" not in s and s.get("ia"):
+            s["rush"] = [f"ia/{p['id']}.mp4" for p in s["ia"]]
     prepare_sfx()
 
     # 1. voix off

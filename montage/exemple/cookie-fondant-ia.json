@@ -1,0 +1,185 @@
+{
+  "titre": "Cookie ultra fondant à l'Airfryer",
+  "handle": "@healthyfry",
+  "voix": "fr-FR-VivienneMultilingualNeural",
+  "vitesse_voix": "+10%",
+  "duree_min": 62,
+  "musique": null,
+  "volume_musique": 0.22,
+  "legende": "Le cookie le plus fondant que tu puisses faire à l'airfryer… prêt en 8 minutes 😍 Enregistre la recette pour ne jamais l'oublier 💚\n\n🍪 Pour 4 cookies : 1 œuf, 60 g sucre roux, 120 g farine, 60 g beurre mou, 100 g pépites de chocolat, ½ c.à.c levure, 1 pincée de sel\n🔥 160°C – 8 min",
+  "hashtags": [
+    "airfryer",
+    "recetteairfryer",
+    "cookie",
+    "recettefacile",
+    "dessertrapide",
+    "healthyfry",
+    "airfryerfrance"
+  ],
+  "segments": [
+    {
+      "type": "hook",
+      "voix": "Arrête de rater tes cookies. Voici le plus fondant que tu puisses faire à l'airfryer, et il est prêt en huit minutes.",
+      "ecran": {
+        "titre": "Le cookie le plus fondant à l'Airfryer",
+        "badge": "Prêt en 8 min"
+      },
+      "ia": [
+        {
+          "id": "hook_cookie_casse",
+          "modele": "seedance",
+          "image": "Overhead close-up of a thick golden chocolate chip cookie broken in half on a cream ceramic plate, molten dark chocolate oozing, flaky sea salt",
+          "video": "Two hands slowly pull the two halves of the warm cookie apart, thick molten chocolate stretches and drips, slow motion, static overhead camera"
+        }
+      ]
+    },
+    {
+      "type": "ingredients",
+      "voix": "Pour quatre gros cookies, il te faut : un œuf, soixante grammes de sucre roux, cent vingt grammes de farine, soixante grammes de beurre mou, cent grammes de pépites de chocolat, une demi cuillère de levure, et une pincée de sel.",
+      "ecran": {
+        "titre": "Pour 4 cookies",
+        "liste": [
+          "1 œuf",
+          "60 g sucre roux",
+          "120 g farine",
+          "60 g beurre mou",
+          "100 g pépites de chocolat",
+          "½ c.à.c levure chimique",
+          "1 pincée de sel"
+        ]
+      },
+      "ia": [
+        {
+          "id": "ingredients_flatlay",
+          "image": "Overhead flat lay of cookie baking ingredients neatly arranged on the counter: one brown egg, a small bowl of brown sugar, a bowl of flour, a block of soft butter on a saucer, a bowl of dark chocolate chunks, a pinch of salt",
+          "video": "A hand gently places the brown egg next to the bowls, slow subtle camera push-in"
+        },
+        {
+          "id": "pepites_chocolat",
+          "image": "Close-up of a small glass bowl full of glossy dark chocolate chunks above a cream ceramic mixing bowl",
+          "video": "Dark chocolate chunks are poured from the small glass bowl and tumble into the mixing bowl, slow motion"
+        }
+      ]
+    },
+    {
+      "type": "etape",
+      "voix": "Commence par mélanger le beurre mou avec le sucre, jusqu'à obtenir une texture bien crémeuse.",
+      "ecran": {
+        "num": 1,
+        "texte": "Beurre mou + sucre"
+      },
+      "ia": [
+        {
+          "id": "melange_beurre",
+          "image": "Top view of a cream ceramic mixing bowl containing soft butter and brown sugar, a metal whisk resting in it",
+          "video": "A hand whisks the soft butter and brown sugar together until creamy and fluffy, top-down view"
+        }
+      ]
+    },
+    {
+      "type": "etape",
+      "voix": "Ajoute l'œuf, puis la farine, la levure et le sel. Mélange juste ce qu'il faut, sans trop travailler la pâte.",
+      "ecran": {
+        "num": 2,
+        "texte": "Œuf, farine, levure, sel"
+      },
+      "ia": [
+        {
+          "id": "oeuf_farine",
+          "image": "Top view of a cream ceramic mixing bowl with creamy butter and sugar mixture, a brown egg held above the bowl",
+          "video": "Hands crack the egg into the bowl, then a spoon adds flour on top, top-down view"
+        }
+      ]
+    },
+    {
+      "type": "etape",
+      "voix": "Incorpore les pépites de chocolat. Gardes-en quelques-unes pour le dessus, c'est ça qui fait l'effet waouh.",
+      "ecran": {
+        "num": 3,
+        "texte": "Les pépites de chocolat"
+      },
+      "ia": [
+        {
+          "id": "incorpore_pepites",
+          "image": "Top view of a cream ceramic bowl with thick golden cookie dough and dark chocolate chunks scattered on top, a silicone spatula",
+          "video": "A hand folds the chocolate chunks into the thick cookie dough with the spatula, top-down view"
+        }
+      ]
+    },
+    {
+      "type": "etape",
+      "voix": "Forme de grosses boules bien épaisses, et aplatis-les juste un peu. C'est le secret pour un cœur coulant.",
+      "ecran": {
+        "num": 4,
+        "texte": "Grosses boules épaisses"
+      },
+      "ia": [
+        {
+          "id": "boules_pate",
+          "image": "Four thick round balls of chocolate chip cookie dough on parchment paper on the light oak counter",
+          "video": "Hands roll a thick ball of cookie dough between the palms and place it on the parchment, then gently press it slightly"
+        }
+      ]
+    },
+    {
+      "type": "etape",
+      "voix": "Direction l'airfryer : cent soixante degrés pendant huit minutes. Pas plus ! Ils doivent encore paraître un peu mous en sortant.",
+      "ecran": {
+        "num": 5,
+        "texte": "Cuisson Airfryer",
+        "badge": "160°C · 8 min"
+      },
+      "ia": [
+        {
+          "id": "panier_cru",
+          "image": "Open black air fryer basket lined with parchment paper containing four raw thick chocolate chip cookie dough balls, high angle",
+          "video": "A hand places the last raw cookie dough ball into the air fryer basket, slow camera push-in"
+        },
+        {
+          "id": "panier_cuit",
+          "image": "Open black air fryer basket with four freshly baked golden chocolate chip cookies, steam rising",
+          "video": "Steam slowly rises from the freshly baked cookies, a hand lifts one warm cookie with a spatula"
+        }
+      ]
+    },
+    {
+      "type": "resultat",
+      "etirable": true,
+      "voix": "Laisse-les reposer cinq minutes… et regarde-moi ce cœur fondant. Croustillant autour, coulant à l'intérieur.",
+      "ecran": {
+        "titre": "Le résultat 😍",
+        "macros": "4 gros cookies · 8 min"
+      },
+      "ia": [
+        {
+          "id": "cookie_macro",
+          "image": "Extreme close-up of a warm thick chocolate chip cookie broken open on a cream plate, glossy molten chocolate center, sea salt flakes",
+          "video": "Fingers slowly pull the cookie further apart, molten chocolate stretches, slow motion macro"
+        },
+        {
+          "id": "pile_cookies",
+          "image": "A stack of four thick golden chocolate chip cookies on a cream ceramic plate, crumbs around",
+          "video": "A hand takes the top cookie from the stack, a few crumbs fall, slow camera push-in"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "voix": "Enregistre la recette pour ne pas l'oublier, et abonne-toi pour une nouvelle recette airfryer chaque jour.",
+      "ecran": {
+        "titre": "Enregistre la recette",
+        "texte": "Une nouvelle recette Airfryer chaque jour 💚",
+        "handle": "@healthyfry"
+      },
+      "ia": [
+        {
+          "id": "hook_cookie_casse",
+          "modele": "seedance",
+          "image": "",
+          "video": ""
+        }
+      ]
+    }
+  ],
+  "style_visuel": "Warm soft natural window light, light oak kitchen counter, beige linen cloth, cream ceramic tableware, cozy bright home kitchen, shallow depth of field"
+}
