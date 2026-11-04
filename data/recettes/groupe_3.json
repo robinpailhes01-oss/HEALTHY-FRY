@@ -1,0 +1,621 @@
+[
+  {
+    "titre": "Bowl de légumes & pois chiches croustillants",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "Brocoli, carottes, poivrons",
+      "100 g de pois chiches cuits",
+      "1 c.à.s. d'huile d'olive",
+      "Paprika, sel, herbes"
+    ],
+    "etapes": [
+      "Mélange les légumes et pois chiches avec l'huile et les épices.",
+      "Airfryer 190°C — 15 min."
+    ],
+    "temperature": "190°C",
+    "temps_cuisson": "15 min",
+    "source": {
+      "rang": 23,
+      "id": "7592236207812119830",
+      "url": "https://www.tiktok.com/@healthyfry/video/7592236207812119830",
+      "vues": 10700,
+      "slide": 1
+    }
+  },
+  {
+    "titre": "Frites de patates douces au paprika",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "1 patate douce",
+      "1 c.à.s. d'huile d'olive",
+      "Paprika, sel, poivre"
+    ],
+    "etapes": [
+      "Coupe la patate en frites.",
+      "Mélange avec huile et épices.",
+      "Airfryer 190°C – 15 à 18 min."
+    ],
+    "temperature": "190°C",
+    "temps_cuisson": "15 à 18 min",
+    "source": {
+      "rang": 23,
+      "id": "7592236207812119830",
+      "url": "https://www.tiktok.com/@healthyfry/video/7592236207812119830",
+      "vues": 10700,
+      "slide": 2
+    }
+  },
+  {
+    "titre": "Brownie healthy au chocolat",
+    "categorie": "sucré",
+    "portions": null,
+    "ingredients": [
+      "1 banane",
+      "40 g de chocolat noir",
+      "1 œuf",
+      "20 g de farine d'avoine"
+    ],
+    "etapes": [
+      "Fais fondre le chocolat, mélange avec banane & œuf.",
+      "Verse dans un moule.",
+      "Airfryer 180°C — 10 min."
+    ],
+    "temperature": "180°C",
+    "temps_cuisson": "10 min",
+    "source": {
+      "rang": 23,
+      "id": "7592236207812119830",
+      "url": "https://www.tiktok.com/@healthyfry/video/7592236207812119830",
+      "vues": 10700,
+      "slide": 3
+    }
+  },
+  {
+    "titre": "Moelleux chocolat & cœur fondant praliné",
+    "categorie": "sucré",
+    "portions": null,
+    "ingredients": [
+      "100 g de chocolat noir",
+      "50 g de beurre",
+      "1 œuf",
+      "40 g de sucre",
+      "20 g de farine",
+      "1 c.à.c. de praliné"
+    ],
+    "etapes": [
+      "Fais fondre le chocolat et le beurre.",
+      "Ajoute sucre, œuf et farine, puis verse dans des moules.",
+      "Glisse un cœur de praliné au centre.",
+      "Airfryer 180°C — 8 min."
+    ],
+    "temperature": "180°C",
+    "temps_cuisson": "8 min",
+    "source": {
+      "rang": 24,
+      "id": "7586001610388589827",
+      "url": "https://www.tiktok.com/@healthyfry/video/7586001610388589827",
+      "vues": 10200,
+      "slide": 1
+    }
+  },
+  {
+    "titre": "Pommes rôties au miel & cannelle",
+    "categorie": "sucré",
+    "portions": null,
+    "ingredients": [
+      "2 pommes",
+      "1 c.à.s. de miel",
+      "1 c.à.c. de cannelle",
+      "Quelques noix ou amandes",
+      "Jus de citron"
+    ],
+    "etapes": [
+      "Coupe les pommes en quartiers.",
+      "Arrose de miel, saupoudre de cannelle et ajoute les noix.",
+      "Airfryer 180°C — 10 min."
+    ],
+    "temperature": "180°C",
+    "temps_cuisson": "10 min",
+    "source": {
+      "rang": 24,
+      "id": "7586001610388589827",
+      "url": "https://www.tiktok.com/@healthyfry/video/7586001610388589827",
+      "vues": 10200,
+      "slide": 2
+    }
+  },
+  {
+    "titre": "Feuilletés brie, poire & miel",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "pâte feuilletée",
+      "brie",
+      "poire",
+      "miel",
+      "noix",
+      "romarin"
+    ],
+    "etapes": [],
+    "temperature": null,
+    "temps_cuisson": null,
+    "source": {
+      "rang": 25,
+      "id": "7581417780075957526",
+      "url": "https://www.tiktok.com/@healthyfry/video/7581417780075957526",
+      "vues": 7092,
+      "slide": 1
+    }
+  },
+  {
+    "titre": "Mini bouchées au crabe & citron",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "chair de crabe",
+      "fromage frais",
+      "citron",
+      "ciboulette",
+      "pâte feuilletée"
+    ],
+    "etapes": [],
+    "temperature": null,
+    "temps_cuisson": null,
+    "source": {
+      "rang": 25,
+      "id": "7581417780075957526",
+      "url": "https://www.tiktok.com/@healthyfry/video/7581417780075957526",
+      "vues": 7092,
+      "slide": 2
+    }
+  },
+  {
+    "titre": "Petits vol-au-vent aux champignons & parmesan",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "pâte feuilletée",
+      "champignons",
+      "crème",
+      "parmesan",
+      "ail",
+      "persil"
+    ],
+    "etapes": [],
+    "temperature": null,
+    "temps_cuisson": null,
+    "source": {
+      "rang": 25,
+      "id": "7581417780075957526",
+      "url": "https://www.tiktok.com/@healthyfry/video/7581417780075957526",
+      "vues": 7092,
+      "slide": 3
+    }
+  },
+  {
+    "titre": "Feuilleté de saumon & épinards crémeux",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "pâte feuilletée",
+      "saumon",
+      "épinards",
+      "crème",
+      "citron",
+      "aneth"
+    ],
+    "etapes": [],
+    "temperature": null,
+    "temps_cuisson": null,
+    "source": {
+      "rang": 26,
+      "id": "7582695058177002774",
+      "url": "https://www.tiktok.com/@healthyfry/video/7582695058177002774",
+      "vues": 7009,
+      "slide": 1
+    }
+  },
+  {
+    "titre": "Brochettes de gambas & ananas caramélisé",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "gambas",
+      "ananas",
+      "miel",
+      "ail",
+      "sauce soja",
+      "citron vert"
+    ],
+    "etapes": [],
+    "temperature": null,
+    "temps_cuisson": null,
+    "source": {
+      "rang": 26,
+      "id": "7582695058177002774",
+      "url": "https://www.tiktok.com/@healthyfry/video/7582695058177002774",
+      "vues": 7009,
+      "slide": 2
+    }
+  },
+  {
+    "titre": "Pavé de veau sauce crémeuse aux morilles",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "veau",
+      "morilles",
+      "crème",
+      "échalotes",
+      "beurre",
+      "vin blanc"
+    ],
+    "etapes": [],
+    "temperature": null,
+    "temps_cuisson": null,
+    "source": {
+      "rang": 26,
+      "id": "7582695058177002774",
+      "url": "https://www.tiktok.com/@healthyfry/video/7582695058177002774",
+      "vues": 7009,
+      "slide": 3
+    }
+  },
+  {
+    "titre": "Poulet farci aux marrons & champignons",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "blanc de poulet",
+      "marrons",
+      "champignons",
+      "ail",
+      "échalotes",
+      "huile d'olive",
+      "herbes"
+    ],
+    "etapes": [],
+    "temperature": null,
+    "temps_cuisson": null,
+    "source": {
+      "rang": 27,
+      "id": "7581588617953299734",
+      "url": "https://www.tiktok.com/@healthyfry/video/7581588617953299734",
+      "vues": 6706,
+      "slide": 1
+    }
+  },
+  {
+    "titre": "Magret de canard miel & orange",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "magret de canard",
+      "miel",
+      "jus d'orange",
+      "épices",
+      "romarin",
+      "sel",
+      "poivre"
+    ],
+    "etapes": [],
+    "temperature": null,
+    "temps_cuisson": null,
+    "source": {
+      "rang": 27,
+      "id": "7581588617953299734",
+      "url": "https://www.tiktok.com/@healthyfry/video/7581588617953299734",
+      "vues": 6706,
+      "slide": 2
+    }
+  },
+  {
+    "titre": "Pavé de saumon & croûte de parmesan",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "saumon",
+      "parmesan",
+      "chapelure",
+      "citron",
+      "aneth",
+      "huile d'olive"
+    ],
+    "etapes": [],
+    "temperature": null,
+    "temps_cuisson": null,
+    "source": {
+      "rang": 27,
+      "id": "7581588617953299734",
+      "url": "https://www.tiktok.com/@healthyfry/video/7581588617953299734",
+      "vues": 6706,
+      "slide": 3
+    }
+  },
+  {
+    "titre": "Feuilletés chèvre, miel & noix",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "Pâte feuilletée",
+      "1 bûche de chèvre",
+      "2 c.à.s. de miel",
+      "Une poignée de noix concassées",
+      "1 jaune d'œuf pour la dorure"
+    ],
+    "etapes": [
+      "Découpe des carrés de pâte et dépose du chèvre au centre.",
+      "Ajoute un filet de miel et quelques noix.",
+      "Referme et badigeonne de jaune d'œuf.",
+      "Airfryer 180°C — 8 min jusqu'à dorure."
+    ],
+    "temperature": "180°C",
+    "temps_cuisson": "8 min",
+    "source": {
+      "rang": 28,
+      "id": "7586256440134847766",
+      "url": "https://www.tiktok.com/@healthyfry/video/7586256440134847766",
+      "vues": 6180,
+      "slide": 1
+    }
+  },
+  {
+    "titre": "Roulés de saumon & épinards",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "Pâte feuilletée",
+      "Saumon fumé",
+      "Épinards frais",
+      "Fromage frais",
+      "Jus de citron",
+      "Aneth"
+    ],
+    "etapes": [
+      "Étale la pâte et tartine de fromage frais.",
+      "Ajoute saumon, épinards et un filet de citron.",
+      "Roule et découpe en tranches.",
+      "Airfryer 180°C — 10 min."
+    ],
+    "temperature": "180°C",
+    "temps_cuisson": "10 min",
+    "source": {
+      "rang": 28,
+      "id": "7586256440134847766",
+      "url": "https://www.tiktok.com/@healthyfry/video/7586256440134847766",
+      "vues": 6180,
+      "slide": 2
+    }
+  },
+  {
+    "titre": "Gnocchis, féta, poulet & courgette",
+    "categorie": "salé",
+    "portions": "2 personnes",
+    "ingredients": [
+      "1 escalope de poulet",
+      "1 sachet de gnochis",
+      "1 courgette",
+      "1 oignon",
+      "Paprika",
+      "1 carré de féta",
+      "Huile d'olives"
+    ],
+    "etapes": [
+      "Mettre les gnocchis dans l'Air Fryer avec le carré de féta au milieu",
+      "Découper l'escalope, la courgette & l'oignon puis disposer par-dessus",
+      "Ajouter huile d'olive + paprika",
+      "Air Fryer 15 min à 180°C"
+    ],
+    "temperature": "180°C",
+    "temps_cuisson": "15 min",
+    "source": {
+      "rang": 29,
+      "id": "7565885556622642454",
+      "url": "https://www.tiktok.com/@healthyfry/video/7565885556622642454",
+      "vues": 5310,
+      "slide": 1
+    }
+  },
+  {
+    "titre": "Millefeuille de chèvre, épinards & miel",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "pâte feuilletée",
+      "chèvre frais",
+      "épinards",
+      "miel",
+      "noix"
+    ],
+    "etapes": [],
+    "temperature": null,
+    "temps_cuisson": null,
+    "source": {
+      "rang": 30,
+      "id": "7581252612926885142",
+      "url": "https://www.tiktok.com/@healthyfry/video/7581252612926885142",
+      "vues": 5052,
+      "slide": 1
+    }
+  },
+  {
+    "titre": "Roulés de saumon & épinards",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "saumon fumé",
+      "épinards",
+      "fromage frais",
+      "citron",
+      "aneth"
+    ],
+    "etapes": [],
+    "temperature": null,
+    "temps_cuisson": null,
+    "source": {
+      "rang": 30,
+      "id": "7581252612926885142",
+      "url": "https://www.tiktok.com/@healthyfry/video/7581252612926885142",
+      "vues": 5052,
+      "slide": 2
+    }
+  },
+  {
+    "titre": "Mini tatins d'oignons caramélisés & parmesan",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "oignons rouges",
+      "sucre brun",
+      "pâte feuilletée",
+      "parmesan",
+      "beurre"
+    ],
+    "etapes": [],
+    "temperature": null,
+    "temps_cuisson": null,
+    "source": {
+      "rang": 30,
+      "id": "7581252612926885142",
+      "url": "https://www.tiktok.com/@healthyfry/video/7581252612926885142",
+      "vues": 5052,
+      "slide": 3
+    }
+  },
+  {
+    "titre": "Marbré protéiné",
+    "categorie": "sucré",
+    "portions": "1 marbré",
+    "ingredients": [
+      "130 g de flocons d'avoine",
+      "3 œufs",
+      "2 compotes",
+      "Sucre vanillé",
+      "Whey chocolat",
+      "Pépites de chocolat"
+    ],
+    "etapes": [
+      "Mixer les flocons d'avoine",
+      "Ajouter les œufs & mélanger",
+      "Ajouter les compotes + sucre vanillé",
+      "Dans un nouveau bol, séparer le mélange & ajouter la whey chocolat",
+      "Dans un récipient en verre, ajouter les 2 mélanges",
+      "Au Air Fryer 20 min à 160°C"
+    ],
+    "temperature": "160°C",
+    "temps_cuisson": "20 min",
+    "source": {
+      "rang": 31,
+      "id": "7565521088734694678",
+      "url": "https://www.tiktok.com/@healthyfry/video/7565521088734694678",
+      "vues": 4811,
+      "slide": 1
+    }
+  },
+  {
+    "titre": "Pommes rôties miel & cannelle",
+    "categorie": "sucré",
+    "portions": null,
+    "ingredients": [
+      "2 pommes",
+      "1 c.à.s. de miel",
+      "1 c.à.c. de cannelle",
+      "1 noisette de beurre"
+    ],
+    "etapes": [
+      "Coupe les pommes en deux et retire le cœur.",
+      "Ajoute miel, cannelle et beurre.",
+      "Airfryer 180°C — 12 min."
+    ],
+    "temperature": "180°C",
+    "temps_cuisson": "12 min",
+    "source": {
+      "rang": 32,
+      "id": "7595604085638712598",
+      "url": "https://www.tiktok.com/@healthyfry/video/7595604085638712598",
+      "vues": 4442,
+      "slide": 1
+    }
+  },
+  {
+    "titre": "Mini fondants au chocolat healthy",
+    "categorie": "sucré",
+    "portions": null,
+    "ingredients": [
+      "60 g de chocolat noir",
+      "40 g de compote de pomme (à la place du beurre)",
+      "1 œuf",
+      "25 g de sucre",
+      "20 g de farine"
+    ],
+    "etapes": [
+      "Fais fondre le chocolat et mélange avec la compote.",
+      "Ajoute sucre, œuf, farine.",
+      "Verse dans des moules.",
+      "Airfryer 180°C — 8 à 10 min."
+    ],
+    "temperature": "180°C",
+    "temps_cuisson": "8 à 10 min",
+    "source": {
+      "rang": 32,
+      "id": "7595604085638712598",
+      "url": "https://www.tiktok.com/@healthyfry/video/7595604085638712598",
+      "vues": 4442,
+      "slide": 2
+    }
+  },
+  {
+    "titre": "Feuilletés aux fruits rouges",
+    "categorie": "sucré",
+    "portions": null,
+    "ingredients": [
+      "1 pâte feuilletée",
+      "Fruits rouges frais ou surgelés",
+      "1 c.à.c. de sucre",
+      "1 jaune d'œuf pour dorure"
+    ],
+    "etapes": [
+      "Découpe des carrés de pâte.",
+      "Garnis de fruits rouges + sucre.",
+      "Referme légèrement les bords.",
+      "Dore et Airfryer 180°C — 10 min."
+    ],
+    "temperature": "180°C",
+    "temps_cuisson": "10 min",
+    "source": {
+      "rang": 32,
+      "id": "7595604085638712598",
+      "url": "https://www.tiktok.com/@healthyfry/video/7595604085638712598",
+      "vues": 4442,
+      "slide": 3
+    }
+  },
+  {
+    "titre": "Avocado Egg Boats",
+    "categorie": "salé",
+    "portions": null,
+    "ingredients": [
+      "1 avocat",
+      "1 euf",
+      "sel / poivre",
+      "ciboulette"
+    ],
+    "etapes": [
+      "Couper l'avocat en deux et enlever le noyau",
+      "Casser l'œuf à l'intérieur",
+      "Cuire 10 min à 180°C au airfryer",
+      "Parsemer de sel, poivre et ciboulette"
+    ],
+    "temperature": "180°C",
+    "temps_cuisson": "10 min",
+    "source": {
+      "rang": 33,
+      "id": "7576595503698152726",
+      "url": "https://www.tiktok.com/@healthyfry/video/7576595503698152726",
+      "vues": 4344,
+      "slide": 1
+    }
+  }
+]
