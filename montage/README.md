@@ -1,14 +1,20 @@
 # Montage automatique Healthy Fry (vidéos de 61 s ou plus, monétisables)
 
-Tu filmes tes rushes au téléphone (mains et airfryer, sans visage) et tu remplis un fichier recette JSON.
-Le script sort une vidéo TikTok prête à publier :
+À partir d'un fichier recette JSON et de visuels (clips vidéo IA ou photos), le script sort une vidéo TikTok prête à publier :
 
 - format **1080×1920, 30 fps, d'au moins 62 s** (seuil du programme de rémunération des créateurs)
 - **voix off FR gratuite** (Microsoft Edge TTS, voix `fr-FR-VivienneMultilingualNeural`)
-- **sous-titres mot à mot** façon TikTok (3 mots à l'écran, le mot prononcé passe en vert)
-- **overlays dans la DA Healthy Fry** : titre d'accroche, carte ingrédients, pastilles d'étapes numérotées, badge température et temps, carte d'appel à l'action finale, @healthyfry discret
-- son d'ambiance des rushes conservé (le croustillant, le grésillement), musique optionnelle baissée automatiquement sous la voix
-- une **miniature** `.jpg` et la **légende** `.txt` avec les hashtags, prête à coller
+- **rythme TikTok** : un changement de plan toutes les 2 s environ (cadrages large et serré alternés, zooms), coup de zoom sur l'accroche
+- **sous-titres mot à mot animés** : 3 mots à l'écran, entrée en rebond, le mot prononcé passe en vert, coupure aux fins de phrase
+- **overlays animés dans la DA Healthy Fry** :
+  - titre d'accroche visible dès la 1re image
+  - ingrédients qui apparaissent **au moment où la voix les prononce**
+  - pastilles d'étapes qui glissent, badges qui rebondissent
+  - écran final « Enregistre la recette »
+- **bruitages** générés et libres de droits : whoosh aux transitions, pop sur les textes, tic à chaque ingrédient, ding au résultat
+- **barre de progression** verte en haut de l'écran (elle augmente la rétention)
+- **son normalisé à -14 LUFS** (le standard TikTok), son des clips conservé sous la voix
+- une **miniature** `.jpg` et la **légende** `.txt` avec les hashtags
 
 Coût : **0 €**. Tout tourne en local (ffmpeg + Chromium + edge-tts).
 
@@ -67,21 +73,15 @@ Options par segment :
 
 **Durée d'un plan = durée de sa phrase de voix off.** Si le rush est trop court, il est ralenti (jusqu'à x0,5), puis la dernière image reste figée.
 
-## Méthode de tournage (environ 1 h par semaine pour 4-5 vidéos)
+## Astuces pour des vidéos qui performent
 
-1. Téléphone en **4K/1080p vertical**, sur trépied au-dessus du plan de travail, avec de la lumière du jour.
-2. Pour chaque recette, filmer **8 plans de 5-10 s** :
-   - le **plan final appétissant** (cookie coupé, fromage qui file), qui sert de hook ET de résultat
-   - les ingrédients alignés
-   - un plan par étape (on ne voit que les mains)
-   - l'ouverture du panier de l'airfryer en gros plan
-3. Nommer les fichiers `hook.mp4`, `ingr.mp4`, `e1.mp4`… dans `rushes/` et dupliquer la recette JSON.
-4. Lancer le rendu, puis publier dans TikTok en ajoutant un **son tendance à 5-10 %**.
-
-Le script et la voix off se génèrent avec Claude : il suffit de donner le nom de la recette et les rushes disponibles.
+- **Accroche** : la 1re phrase doit être une phrase choc (« Arrête de rater tes cookies ») sur le plan le plus appétissant.
+- **Boucle** : termine la vidéo sur le même visuel que le début, pour que le revisionnage s'enchaîne naturellement.
+- `rush` accepte une **liste** de visuels : le temps du plan est réparti entre eux.
+- À la publication, ajoute un **son tendance** dans TikTok à 5-10 % du volume, et coche **« contenu généré par IA »** si les visuels sont générés.
 
 ## Exemple fourni
 
 `exemple/` contient une recette de démo (le cookie fondant, qui avait fait 211k vues en carrousel).
-Les « rushes » sont des **photos tirées des anciens carrousels**, juste pour tester le pipeline.
-**Ne pas publier cette démo telle quelle** : TikTok ne rémunère que les vidéos originales filmées.
+Les visuels sont des **photos tirées des anciens carrousels**, juste pour tester le pipeline.
+La prochaine étape remplace ces photos par des **clips vidéo IA** générés automatiquement.
