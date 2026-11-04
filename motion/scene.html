@@ -1,0 +1,211 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: P; font-weight: 600; src: url(../montage/fonts/Poppins-600.ttf); }
+@font-face { font-family: P; font-weight: 800; src: url(../montage/fonts/Poppins-800.ttf); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; font-family: P, 'Noto Color Emoji', sans-serif; }
+#bg { position: absolute; inset: 0; }
+.el { position: absolute; left: 0; top: 0; will-change: transform; transform-origin: 50% 50%; }
+.obj { filter: drop-shadow(0 40px 38px rgba(60,40,20,.35)) drop-shadow(0 8px 10px rgba(60,40,20,.25)); }
+.word { position: absolute; left: 0; width: 1080px; text-align: center; font-weight: 800; line-height: 1.05; color: #2E5E3A; letter-spacing: -2px; }
+.hl { display: inline-block; background: #2E5E3A; color: #F4EFE4; padding: 0 34px 8px; border-radius: 26px; }
+.pill { position: absolute; background: #2E5E3A; color: #fff; font-weight: 800; border-radius: 999px; white-space: nowrap; padding: 12px 30px; font-size: 38px; box-shadow: 0 12px 30px rgba(0,0,0,.18); }
+.pill.light { background: #F4EFE4; color: #2E5E3A; border: 5px solid #2E5E3A; }
+.stamp { position: absolute; background: #F4EFE4; color: #2E5E3A; border: 7px solid #2E5E3A; font-weight: 800; border-radius: 28px; padding: 12px 34px; font-size: 54px; white-space: nowrap; box-shadow: 0 16px 40px rgba(0,0,0,.25); }
+#fx, #grain { position: absolute; inset: 0; pointer-events: none; }
+#grain { opacity: .07; mix-blend-mode: multiply; }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+#timer { position: absolute; left: 0; top: 0; width: 1080px; text-align: center; }
+#temp { font-weight: 800; font-size: 150px; color: #2E5E3A; line-height: 1; letter-spacing: -4px; }
+#clock { font-weight: 800; font-size: 64px; color: #F4EFE4; background: #2E5E3A; display: inline-block; padding: 6px 34px; border-radius: 999px; margin-top: 10px; }
+#cta { position: absolute; left: 0; top: 0; width: 900px; background: #F4EFE4; border-radius: 48px; padding: 52px 40px; text-align: center; box-shadow: 0 24px 60px rgba(0,0,0,.25); }
+#cta h1 { font-weight: 800; font-size: 72px; color: #2E5E3A; line-height: 1.1; }
+#cta p { font-weight: 600; font-size: 40px; color: #1F3A26; margin-top: 18px; }
+#cta .pill { position: static; display: inline-block; margin-top: 26px; font-size: 46px; }
+#ingTitle, .word, .pill, .stamp, #lab0, #lab1 { left: 0; top: 0; }
+#cta .pill { left: auto; top: auto; }
+svg { position: absolute; left: 0; top: 0; overflow: visible; }
+</style></head>
+<body>
+<div id="bg"></div>
+<canvas id="fx" width="1080" height="1920"></canvas>
+
+<!-- objets photoréalistes détourés -->
+<img id="hero" class="el obj" src="cut/cookie_casse.png" style="width:940px">
+<img id="cookie" class="el obj" src="cut/cookie_entier.png" style="width:620px">
+<img id="i0" class="el obj" src="cut/oeuf.png" style="width:360px">
+<img id="i1" class="el obj" src="cut/sucre.png" style="width:410px">
+<img id="i2" class="el obj" src="cut/farine.png" style="width:430px">
+<img id="i3" class="el obj" src="cut/beurre.png" style="width:430px">
+<img id="i4" class="el obj" src="cut/chocolat.png" style="width:440px">
+<img id="af" class="el obj" src="cut/airfryer.png" style="width:640px">
+
+<!-- textes -->
+<div id="w0" class="word" style="font-size:112px">LE COOKIE</div>
+<div id="w1" class="word" style="font-size:112px">LE PLUS</div>
+<div id="w2" class="word" style="font-size:124px"><span class="hl">FONDANT</span></div>
+<div id="badge" class="stamp">PRÊT EN 8 MIN</div>
+<div id="ingTitle" class="pill" style="font-size:44px">LES INGRÉDIENTS</div>
+<div id="l0" class="pill light">1 œuf</div>
+<div id="l1" class="pill light">60 g sucre roux</div>
+<div id="l2" class="pill light">120 g farine</div>
+<div id="l3" class="pill light">60 g beurre</div>
+<div id="l4" class="pill light">100 g chocolat</div>
+<div id="timer"><div id="temp">160°C</div><div id="clock">8:00</div></div>
+<svg id="ring" width="1080" height="1920"><circle id="ringBg" cx="540" cy="960" r="430" fill="none" stroke="rgba(46,94,58,.15)" stroke-width="18"/>
+  <circle id="ringFg" cx="540" cy="960" r="430" fill="none" stroke="#6BAF6E" stroke-width="18" stroke-linecap="round" transform="rotate(-90 540 960)"/></svg>
+<div id="lab0" class="pill">CROUSTILLANT</div>
+<div id="lab1" class="pill">FONDANT</div>
+<svg id="arrows" width="1080" height="1920">
+  <path id="ar0" d="M300 640 C 300 720, 250 760, 215 800" fill="none" stroke="#2E5E3A" stroke-width="9" stroke-linecap="round"/>
+  <path id="ar1" d="M760 1240 C 760 1150, 650 1080, 560 1010" fill="none" stroke="#2E5E3A" stroke-width="9" stroke-linecap="round"/>
+</svg>
+<div id="cta"><h1>Enregistre la recette</h1><p>Une recette Airfryer chaque jour 💚</p><div class="pill">@healthyfry</div></div>
+<div id="flash"></div>
+<canvas id="grain" width="540" height="960"></canvas>
+
+<script>
+// ---------- utilitaires
+const $ = (id) => document.getElementById(id);
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const P = (t, a, d) => cl((t - a) / d);                       // progression 0→1
+const lerp = (a, b, p) => a + (b - a) * p;
+const oC = (p) => 1 - Math.pow(1 - p, 3);                       // ease out cubic
+const iC = (p) => p * p * p;
+const oB = (p) => { const c = 1.9; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); }; // overshoot
+const ioS = (p) => -(Math.cos(Math.PI * p) - 1) / 2;
+function rnd(seed) { let s = seed; return () => (s = (s * 16807) % 2147483647) / 2147483647; }
+const sizes = {};
+function place(id, cx, cy, s = 1, rot = 0, op = 1) {           // centre l'élément en (cx, cy)
+  const e = $(id); const w = sizes[id][0], h = sizes[id][1];
+  e.style.transform = `translate(${cx - w / 2}px, ${cy - h / 2}px) rotate(${rot}deg) scale(${Math.max(s, 0.0001)})`;
+  e.style.opacity = op; e.style.visibility = op <= 0.001 ? 'hidden' : 'visible';
+}
+
+let T;                                                           // timeline (injectée par Python)
+const crumbs = [], steam = [];
+window.setup = (timeline) => {
+  T = timeline;
+  for (const e of document.querySelectorAll('.el, .word, .pill, .stamp, #cta, #timer')) {
+    const r = e.getBoundingClientRect(); sizes[e.id] = [r.width, r.height];
+  }
+  // particules : miettes (éclats du cookie) et farine
+  const r = rnd(7);
+  for (let i = 0; i < 70; i++) crumbs.push({ a: r() * Math.PI * 2, v: 500 + r() * 900, s: 4 + r() * 13, c: r() < .5 ? '#5a3418' : '#b98544', spin: r() });
+  for (let i = 0; i < 26; i++) steam.push({ x: r(), d: r() * 3, s: 60 + r() * 90, w: r() });
+  // grain photo (statique, décalé à chaque image)
+  const g = $('grain').getContext('2d'); const im = g.createImageData(540, 960);
+  for (let i = 0; i < im.data.length; i += 4) { const v = 128 + (r() - .5) * 255; im.data[i] = im.data[i + 1] = im.data[i + 2] = v; im.data[i + 3] = 255; }
+  g.putImageData(im, 0, 0);
+};
+
+function burst(ctx, t0, t, cx, cy, flour = false) {
+  const dt = t - t0; if (dt < 0 || dt > 1.4) return;
+  for (const p of crumbs) {
+    const x = cx + Math.cos(p.a) * p.v * dt; const y = cy + Math.sin(p.a) * p.v * dt * .8 + 900 * dt * dt;
+    ctx.globalAlpha = cl(1 - dt / 1.4); ctx.fillStyle = flour ? (p.spin < .5 ? '#ffffff' : '#d9c7a6') : p.c;
+    ctx.save(); ctx.translate(x, y); ctx.rotate(p.spin * 10 * dt);
+    ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * (flour ? 1 : .8)); ctx.restore();
+  }
+  ctx.globalAlpha = 1;
+}
+function vapeur(ctx, t, cx, cy, largeur, force) {
+  if (force <= 0) return;
+  for (const s of steam) {
+    const ph = ((t * .45 + s.d) % 1);
+    const x = cx + (s.x - .5) * largeur + Math.sin((t + s.w * 6) * 2) * 30 * ph;
+    const y = cy - ph * 520;
+    const g = ctx.createRadialGradient(x, y, 0, x, y, s.s * (1 + ph));
+    g.addColorStop(0, `rgba(255,255,255,${.38 * force * Math.sin(ph * Math.PI)})`); g.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, s.s * (1 + ph), 0, 7); ctx.fill();
+  }
+}
+
+// ---------- rendu d'une image à l'instant t
+window.render = (t) => {
+  const H = T.hook, G = T.ingr, R = T.prep, S = T.result, C = T.cta;
+  // fond crème avec halo de lumière qui respire + teinte chaude pendant la cuisson
+  const chaud = P(t, R[0] + 1.8, .6) * (1 - P(t, R[1] - .3, .3));
+  const lx = 540 + Math.sin(t * .6) * 160, ly = 820 + Math.cos(t * .45) * 120;
+  $('bg').style.background = `radial-gradient(circle at ${lx}px ${ly}px, ${chaud > 0 ? `rgba(255,${220 - 60 * chaud},${170 - 90 * chaud},1)` : '#FFFBF2'} 0%, #F4EFE4 38%, #E6DCC8 100%)`;
+  const fx = $('fx').getContext('2d'); fx.clearRect(0, 0, 1080, 1920);
+  const gr = $('grain'); gr.style.transform = `translate(${(t * 7919) % 30 - 15}px, ${(t * 104729) % 30 - 15}px) scale(2.05)`; gr.style.transformOrigin = '0 0';
+
+  // ===== 1. ACCROCHE : le cookie fondant arrive, mots qui claquent
+  {
+    const pin = oB(P(t, H[0], .75)), out = iC(P(t, H[1] - .35, .35));
+    const push = (t - H[0]) * .035;
+    const back = oB(P(t, S[0], .7)), out2 = iC(P(t, C[0], .6));
+    let s = 0, y = 900, rot = 0, op = 0;
+    if (t < S[0]) { s = lerp(.35, 1, pin) + push + out * 1.8; y = lerp(1950, 930, pin); rot = lerp(-28, -4, pin); op = 1 - out; }
+    else { s = lerp(.15, 1.12, back) + (t - S[0]) * .03 - out2 * .5; y = lerp(980, 930, back) - out2 * 330; rot = lerp(14, 2, back); op = 1; }
+    place('hero', 540, y, s, rot, t > H[0] ? op : 0);
+    burst(fx, H[0] + .55, t, 540, 930);
+    ['w0', 'w1', 'w2'].forEach((id, i) => {
+      const p = oB(P(t, H[0] + .1 + i * .2, .45)); const o = 1 - P(t, H[1] - .3, .25);
+      place(id, 540, 230 + i * 150, lerp(2.2, 1, p) * (1 + o * 0 ), i === 2 ? -3 : 0, p > 0 ? cl(p * 2) * o : 0);
+    });
+    const b = oC(P(t, H[0] + 1.1, .3)), bo = 1 - P(t, H[1] - .3, .25);
+    place('badge', 720, 1210, lerp(2.4, 1, b), -8, b > 0 ? b * bo : 0);
+  }
+
+  // ===== 2. INGRÉDIENTS : tombent un par un au moment où la voix les cite
+  {
+    const pos = [[285, 560], [795, 560], [285, 900], [795, 900], [540, 1170]];
+    const lab = [[285, 730], [795, 730], [285, 1060], [795, 1060], [540, 1320]];
+    const tt = oB(P(t, G[0], .45)), tto = 1 - P(t, G[1], .3);
+    place('ingTitle', 540, 330, tt, 0, t > G[0] ? tt * tto : 0);
+    for (let i = 0; i < 5; i++) {
+      const a = T.reveal[i]; const p = oB(P(t, a, .55));
+      const sw = ioS(P(t, R[0] + i * .05, .6));                    // aspiration vers le centre
+      const bob = Math.sin((t - a) * 2.2 + i) * 9;
+      const x = lerp(pos[i][0], 540, sw), y = lerp(lerp(pos[i][1] - 700, pos[i][1], p) + bob, 950, sw);
+      const s = lerp(.3, 1, p) * (1 - sw);
+      place('i' + i, x, y, s, lerp(-35 + i * 15, (i % 2 ? 6 : -6), p) + sw * 360, t >= a && sw < 1 ? 1 : 0);
+      const pl = oB(P(t, a + .2, .35)), plo = 1 - P(t, R[0], .2);
+      place('l' + i, lab[i][0], lab[i][1], pl, 0, t >= a + .2 ? pl * plo : 0);
+    }
+  }
+
+  // ===== 3. PRÉPARATION : tout fusionne en cookie, direction l'airfryer, compteur de température + minuteur
+  {
+    const c = oB(P(t, R[0] + .55, .5)), into = ioS(P(t, R[0] + 1.45, .5));
+    place('cookie', 540, lerp(950, 980, into), lerp(0, 1.35, c) * lerp(1, .2, into), (t - R[0]) * 20, t > R[0] + .55 && into < 1 ? 1 : 0);
+    burst(fx, R[0] + .55, t, 540, 950, true);
+    const a = oC(P(t, R[0] + 1.0, .5)), ao = iC(P(t, R[1] - .4, .4));
+    const shake = chaud > 0 ? Math.sin(t * 60) * 1.5 * chaud : 0;
+    place('af', lerp(1500, 540, a) + shake, 960 + ao * 1400, 1, 0, t > R[0] + 1.0 && ao < 1 ? 1 : 0);
+    $('af').style.filter = `drop-shadow(0 40px 38px rgba(60,40,20,.35)) drop-shadow(0 0 ${60 * chaud}px rgba(255,140,40,${.75 * chaud}))`;
+    vapeur(fx, t, 540, 600, 300, chaud);
+    const tp = P(t, R[0] + 1.8, .7), tm = P(t, R[0] + 2.4, R[1] - R[0] - 2.9);
+    const tv = oC(P(t, R[0] + 1.7, .35)) * (1 - P(t, R[1] - .35, .3));
+    $('temp').textContent = Math.round(lerp(20, 160, oC(tp))) + '°C';
+    const sec = Math.round(480 * (1 - tm)); $('clock').textContent = `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`;
+    place('timer', 540, 250 + sizes.timer[1] / 2, lerp(.6, 1, tv), 0, tv);
+    const circ = 2 * Math.PI * 420; $('ringFg').style.strokeDasharray = circ;
+    $('ringFg').style.strokeDashoffset = circ * (1 - tm); $('ring').style.opacity = tv * .9;
+    $('flash').style.opacity = Math.max(0, 1 - P(t, S[0], .25)) * (t >= S[0] ? .7 : 0);
+  }
+
+  // ===== 4. RÉSULTAT : le cookie revient en héros, vapeur, flèches croustillant/fondant
+  {
+    vapeur(fx, t, 540, 820, 500, t > S[0] ? (1 - P(t, C[0], .4)) : 0);
+    burst(fx, S[0] + .05, t, 540, 930);
+    const fade = 1 - P(t, C[0], .3);
+    [['lab0', 300, 590, S[0] + .7], ['lab1', 790, 1290, S[0] + 1.3]].forEach(([id, x, y, a], k) => {
+      const p = oB(P(t, a, .4)); place(id, x, y, p, k ? 3 : -3, t > a ? p * fade : 0);
+      const L = $('ar' + k).getTotalLength(); const d = oC(P(t, a + .1, .4));
+      $('ar' + k).style.strokeDasharray = L; $('ar' + k).style.strokeDashoffset = L * (1 - d);
+      $('ar' + k).style.opacity = t > a ? fade : 0;
+    });
+  }
+
+  // ===== 5. APPEL À L'ACTION
+  {
+    const p = oB(P(t, C[0] + .2, .5));
+    place('cta', 540, 1130, lerp(.4, 1, p), 0, t > C[0] + .2 ? cl(p * 1.5) : 0);
+  }
+};
+</script>
+</body></html>
