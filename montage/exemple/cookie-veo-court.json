@@ -1,0 +1,35 @@
+{
+  "titre": "Cookie fondant Airfryer (test Veo 3.1, format court)",
+  "handle": "@healthyfry",
+  "voix": "fr-FR-VivienneMultilingualNeural",
+  "vitesse_voix": "+8%",
+  "duree_min": 15,
+  "legende": "Le cookie le plus fondant à l'airfryer 😍 160°C – 8 min. Enregistre la recette 💚\n\n🍪 Pour 4 cookies : 1 œuf, 60 g sucre roux, 120 g farine, 60 g beurre mou, 100 g pépites de chocolat, ½ c.à.c levure, 1 pincée de sel",
+  "hashtags": ["airfryer", "recetteairfryer", "cookie", "recettefacile", "healthyfry"],
+  "segments": [
+    {
+      "type": "hook",
+      "rush": "veo/veo_hook.mp4", "debut": 3.0, "son_rush": 0.7,
+      "voix": "Le cookie le plus fondant que tu puisses faire à l'airfryer.",
+      "ecran": { "titre": "Le cookie le plus fondant à l'Airfryer", "badge": "Prêt en 8 min" }
+    },
+    {
+      "type": "etape",
+      "rush": "veo/veo_panier.mp4", "debut": 0.0, "fin": 4.3, "son_rush": 0.7,
+      "voix": "De grosses boules de pâte dans le panier, et hop, cent soixante degrés.",
+      "ecran": { "num": 1, "texte": "Grosses boules de pâte", "badge": "160°C · 8 min" }
+    },
+    {
+      "type": "resultat",
+      "rush": "veo/veo_sortie.mp4", "debut": 1.0, "son_rush": 0.7,
+      "voix": "Huit minutes plus tard… regarde-moi ce cœur fondant.",
+      "ecran": { "titre": "Le résultat 😍" }
+    },
+    {
+      "type": "cta",
+      "rush": "veo/veo_hook.mp4", "debut": 4.2, "son_rush": 0.7,
+      "voix": "La recette complète est dans la légende. Enregistre-la !",
+      "ecran": { "titre": "Recette en légende", "texte": "Enregistre-la pour ne pas l'oublier 💚", "handle": "@healthyfry" }
+    }
+  ]
+}

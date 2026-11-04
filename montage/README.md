@@ -125,3 +125,13 @@ python3 montage/render.py montage/exemple/cookie-fondant-ia.json
 
 **Coût réel de la vidéo d'exemple : 1 plan Seedance + 10 plans Wan ≈ 285 crédits ≈ 1,40 $.**
 En réutilisant le même plan d'accroche à la fin (effet boucle) et en restant sur Wan : **environ 1,20 $ par vidéo**.
+
+## Réalisme maximum : Google Veo 3.1
+
+Dans un plan `ia`, mets `"modele": "veo"` (Veo 3.1 Fast, 65 crédits pour 8 s en 1080p, **avec le son**) ou `"veo_quality"` (255 crédits).
+Il n'y a pas d'image intermédiaire : Veo génère directement la vidéo à partir du texte `video`, en style « filmé au smartphone dans une vraie cuisine ».
+C'est ce qui donne le rendu le plus naturel.
+
+- Dans un segment, `debut` et `fin` (en secondes) gardent seulement le meilleur passage du clip.
+- Exemple : `exemple/cookie-veo-court.json` (15 s, 3 clips Veo, environ 195 crédits).
+- Pour 1 min avec Veo Fast : 8 clips de 8 s, soit environ 520 crédits, environ **2,60 $ par vidéo**.

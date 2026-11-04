@@ -249,7 +249,8 @@ def plan_video(chemin, d, seg, entrees, filtres, prefixe, idx=0):
     """Clip vidéo plein écran. Trop court : léger ralenti, puis aller-retour (boomerang).
     Long à l'écran : recoupé en plans de ~2,5 s alternant cadrage large et cadrage serré."""
     debut = float(seg.get("debut", 0))
-    dispo = max(0.1, duree(chemin) - debut)
+    fin = min(float(seg.get("fin", 1e9)), duree(chemin))
+    dispo = max(0.1, fin - debut)
     vitesse = float(seg.get("vitesse", 1.0))
     utile = dispo / vitesse
     if utile < d:

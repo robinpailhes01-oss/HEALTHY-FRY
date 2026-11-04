@@ -29,6 +29,11 @@ MODELES = {
                                  "duration": 5, "generate_audio": False}, 41),
 }
 COUT_IMAGE = 4
+# Veo 3.1 (Google) : le plus réaliste, génère directement la vidéo depuis le texte, avec le son. 8 s en 1080p.
+VEO = {"veo": ("veo3_fast", 65), "veo_quality": ("veo3", 255)}
+LOOK_SMARTPHONE = ("Vertical smartphone video filmed by a home cook in a real everyday kitchen, natural daylight from a window, "
+                   "slightly handheld camera, authentic amateur TikTok food footage, natural imperfect details, real textures, "
+                   "no text, no music. ")
 NEGATIF = "ultra realistic, appetizing, no text, no logo, no face"
 
 
@@ -40,6 +45,14 @@ def plan_complet(p, style):
 
 def generer(p, style, dossier):
     sortie = dossier / "ia" / f"{p['id']}.mp4"
+    if p.get("modele") in VEO:
+        t = time.time()
+        tier, _ = VEO[p["modele"]]
+        tid = kie.creer("veo-3-1", {"prompt": LOOK_SMARTPHONE + p["video"], "model": tier, "generation_type": "TEXT_2_VIDEO",
+                                    "aspect_ratio": "9:16", "resolution": "1080p", "duration": 8})
+        urls, info = kie.attendre(tid, pas=10, delai_max=1500)
+        kie.telecharger(urls[0], sortie)
+        return p["id"], info.get("creditsConsumed"), round(time.time() - t)
     img_prompt, vid_prompt = plan_complet(p, style)
     t = time.time()
     tid = kie.creer("nano-banana-2-1", {"prompt": img_prompt, "aspect_ratio": "9:16", "resolution": "1K", "output_format": "jpg"})
@@ -69,7 +82,8 @@ def main():
         vus.add(p["id"])
         if not (fichier.parent / "ia" / f"{p['id']}.mp4").exists():
             a_faire.append(p)
-    cout = sum(COUT_IMAGE + MODELES[p.get("modele", "wan")][2] for p in a_faire)
+    cout = sum(VEO[p["modele"]][1] if p.get("modele") in VEO else COUT_IMAGE + MODELES[p.get("modele", "wan")][2]
+               for p in a_faire)
     print(f"{len(vus)} plans IA, {len(vus) - len(a_faire)} déjà en cache, {len(a_faire)} à générer")
     print(f"coût estimé : {cout} crédits (≈ {cout * 0.005:.2f} $)")
     if a.estimer or not a_faire:
@@ -83,7 +97,7 @@ def main():
         for fut in [ex.submit(generer, p, style, fichier.parent) for p in a_faire]:
             try:
                 pid, cr, sec = fut.result()
-                total += (cr or 0) + COUT_IMAGE
+                total += (cr or 0)
                 print(f"  ✓ {pid}  ({cr} crédits vidéo, {sec}s)")
             except Exception as e:  # on continue les autres plans
                 print(f"  ✗ {e}")

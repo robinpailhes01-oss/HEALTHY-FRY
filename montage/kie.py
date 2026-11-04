@@ -42,7 +42,9 @@ def attendre(task_id, delai_max=900, pas=6):
         etat = d.get("state")
         if etat == "success":
             res = json.loads(d.get("resultJson") or "{}")
-            return res.get("resultUrls") or [], d
+            urls = (res.get("resultUrls") or (res.get("data") or {}).get("result_urls")
+                    or res.get("result_urls") or (res.get("data") or {}).get("origin_urls") or [])
+            return urls, d
         if etat == "fail":
             raise RuntimeError(f"Tâche {task_id} échouée : {d.get('failMsg') or d.get('failCode')}")
         time.sleep(pas)
