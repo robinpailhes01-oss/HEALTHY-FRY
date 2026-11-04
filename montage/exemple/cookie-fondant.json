@@ -1,0 +1,70 @@
+{
+  "titre": "Cookie ultra fondant à l'Airfryer",
+  "handle": "@healthyfry",
+  "voix": "fr-FR-VivienneMultilingualNeural",
+  "vitesse_voix": "+8%",
+  "duree_min": 62,
+  "musique": null,
+  "volume_musique": 0.22,
+  "legende": "Le cookie le plus fondant que tu puisses faire à l'airfryer… prêt en 8 minutes 😍 Enregistre la recette pour ne jamais l'oublier 💚\n\n🍪 Pour 4 cookies : 1 œuf, 60 g sucre roux, 120 g farine, 60 g beurre mou, 100 g pépites de chocolat, ½ c.à.c levure, 1 pincée de sel\n🔥 160°C – 8 min",
+  "hashtags": ["airfryer", "recetteairfryer", "cookie", "recettefacile", "dessertrapide", "healthyfry", "airfryerfrance"],
+
+  "segments": [
+    {
+      "type": "hook",
+      "rush": "rushes/cookie_fondant.jpg",
+      "voix": "Le cookie le plus fondant que tu puisses faire à l'airfryer. Et il est prêt en huit minutes chrono.",
+      "ecran": { "titre": "Le cookie le plus fondant à l'Airfryer", "badge": "Prêt en 8 min" }
+    },
+    {
+      "type": "ingredients",
+      "rush": "rushes/cookies_plaque.jpg",
+      "voix": "Pour quatre gros cookies, il te faut : un œuf, soixante grammes de sucre roux, cent vingt grammes de farine, soixante grammes de beurre mou, cent grammes de pépites de chocolat, une demi cuillère de levure, et une pincée de sel.",
+      "ecran": { "titre": "Pour 4 cookies", "liste": ["1 œuf", "60 g sucre roux", "120 g farine", "60 g beurre mou", "100 g pépites de chocolat", "½ c.à.c levure chimique", "1 pincée de sel"] }
+    },
+    {
+      "type": "etape",
+      "rush": "rushes/melange.jpg",
+      "voix": "Commence par mélanger le beurre mou avec le sucre, jusqu'à obtenir une texture bien crémeuse.",
+      "ecran": { "num": 1, "texte": "Beurre mou + sucre" }
+    },
+    {
+      "type": "etape",
+      "rush": "rushes/rush_test_video.mp4",
+      "son_rush": 0.3,
+      "voix": "Ajoute l'œuf, puis la farine, la levure et le sel. Mélange juste ce qu'il faut, sans trop travailler la pâte.",
+      "ecran": { "num": 2, "texte": "Œuf, farine, levure, sel" }
+    },
+    {
+      "type": "etape",
+      "rush": "rushes/boules.jpg",
+      "voix": "Incorpore les pépites de chocolat. Gardes-en quelques-unes pour le dessus, c'est ça qui fait l'effet waouh.",
+      "ecran": { "num": 3, "texte": "Les pépites de chocolat" }
+    },
+    {
+      "type": "etape",
+      "rush": "rushes/cookies_plaque.jpg",
+      "voix": "Forme de grosses boules bien épaisses, et aplatis-les juste un peu. C'est le secret pour un cœur coulant.",
+      "ecran": { "num": 4, "texte": "Grosses boules épaisses" }
+    },
+    {
+      "type": "etape",
+      "rush": "rushes/cookie_coupe.jpg",
+      "voix": "Direction l'airfryer : cent soixante degrés pendant huit minutes. Pas plus ! Ils doivent encore paraître un peu mous en sortant.",
+      "ecran": { "num": 5, "texte": "Cuisson Airfryer", "badge": "160°C · 8 min" }
+    },
+    {
+      "type": "resultat",
+      "rush": "rushes/cookie_fondant.jpg",
+      "etirable": true,
+      "voix": "Laisse-les reposer cinq minutes… et regarde-moi ce cœur fondant. Croustillant autour, coulant à l'intérieur.",
+      "ecran": { "titre": "Le résultat 😍", "macros": "4 gros cookies · 8 min" }
+    },
+    {
+      "type": "cta",
+      "rush": "rushes/cookie_coupe.jpg",
+      "voix": "Enregistre la recette pour ne pas l'oublier, et abonne-toi : une nouvelle recette airfryer chaque jour.",
+      "ecran": { "titre": "Enregistre la recette", "texte": "Une nouvelle recette Airfryer chaque jour 💚", "handle": "@healthyfry" }
+    }
+  ]
+}
