@@ -5,7 +5,9 @@ import json
 import os
 import urllib.request
 
-API = "https://api.elevenlabs.io/v1"
+# api.us.elevenlabs.io : adresse officielle (région US), utilisée car le proxy de cet environnement
+# réécrit l'authentification vers api.elevenlabs.io.
+API = os.environ.get("ELEVENLABS_API_BASE", "https://api.us.elevenlabs.io/v1")
 
 
 def dispo():
@@ -21,7 +23,7 @@ def _req(chemin, corps=None, brut=False):
     return data if brut else json.loads(data)
 
 
-def voix_off(texte, voice_id, sortie, modele="eleven_multilingual_v2", stabilite=0.35, style=0.45, vitesse=1.05):
+def voix_off(texte, voice_id, sortie, modele="eleven_v3", stabilite=0.5, style=0.45, vitesse=1.0):
     """Génère la voix et renvoie les mots avec leurs instants [{t, d, mot}]."""
     rep = _req(f"/text-to-speech/{voice_id}/with-timestamps?output_format=mp3_44100_128", {
         "text": texte, "model_id": modele,
@@ -43,7 +45,19 @@ def voix_off(texte, voice_id, sortie, modele="eleven_multilingual_v2", stabilite
         fin = b
     if cur:
         mots.append({"t": debut, "d": fin - debut, "mot": cur})
-    return mots
+    # les balises d'émotion v3 ([excited], [laughs]…) ne doivent pas apparaître dans les sous-titres
+    propres, dans_balise = [], False
+    for m in mots:
+        if m["mot"].startswith("["):
+            dans_balise = True
+        if not dans_balise:
+            propres.append(m)
+        if m["mot"].endswith("]") or "]" in m["mot"]:
+            dans_balise = False
+            reste = m["mot"].split("]", 1)[1]
+            if reste:
+                propres.append(dict(m, mot=reste))
+    return propres
 
 
 def effet_sonore(description, sortie, duree=None, influence=0.5):
