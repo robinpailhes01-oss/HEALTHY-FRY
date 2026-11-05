@@ -1,0 +1,192 @@
+{
+  "titre": "Le brownie le plus fondant à l'Airfryer",
+  "handle": "@healthyfry",
+  "duree_min": 62,
+  "voix": {
+    "elevenlabs_id": "KSyQzmsYhFbuOhqj1Xxv",
+    "nom": "Léa - UGC creator (FR)",
+    "modele": "eleven_v3",
+    "stabilite": 0.5,
+    "style": 0.45,
+    "vitesse": 1.0,
+    "edge": "fr-FR-VivienneMultilingualNeural",
+    "vitesse_edge": "+8%"
+  },
+  "accroche_video": "brownies/accroche_veo.mp4",
+  "accroche_debut": 3.4,
+  "musique": null,
+  "assets": {
+    "hero": "brownies/cut/brownie_hero.png",
+    "plat": "brownies/cut/brownie_plat.png",
+    "fondu": "brownies/cut/chocolat_fondu.png",
+    "pate": "brownies/cut/pate.png",
+    "noix": "brownies/cut/noix.png",
+    "chocolat": "../cut/chocolat.png",
+    "beurre": "../cut/beurre.png",
+    "sucre": "../cut/sucre.png",
+    "oeuf": "../cut/oeuf.png",
+    "farine": "../cut/farine.png",
+    "airfryer": "../cut/airfryer.png"
+  },
+  "scenes": [
+    {
+      "type": "hook",
+      "lignes": [
+        "LE BROWNIE",
+        "LE PLUS",
+        "FONDANT"
+      ],
+      "badge": "AIRFRYER · 14 MIN",
+      "voix": "[excited] Le brownie le plus fondant du monde… et il cuit à l'airfryer !"
+    },
+    {
+      "type": "promesse",
+      "titre": "ZÉRO PRISE DE TÊTE",
+      "stats": [
+        [
+          "5",
+          "INGRÉDIENTS"
+        ],
+        [
+          "14",
+          "MINUTES"
+        ],
+        [
+          "1",
+          "SEUL BOL"
+        ]
+      ],
+      "voix": "Cinq ingrédients, quatorze minutes, et un seul bol à laver. [laughs] Oui, c'est possible."
+    },
+    {
+      "type": "ingredients",
+      "titre": "POUR 6 PARTS",
+      "items": [
+        {
+          "img": "chocolat",
+          "label": "120 g chocolat noir",
+          "mot": "chocolat"
+        },
+        {
+          "img": "beurre",
+          "label": "80 g beurre",
+          "mot": "beurre"
+        },
+        {
+          "img": "sucre",
+          "label": "80 g sucre roux",
+          "mot": "sucre"
+        },
+        {
+          "img": "oeuf",
+          "label": "2 œufs",
+          "mot": "œufs"
+        },
+        {
+          "img": "farine",
+          "label": "60 g farine",
+          "mot": "farine"
+        },
+        {
+          "img": "noix",
+          "label": "Noix (option)",
+          "mot": "noix"
+        }
+      ],
+      "voix": "Pour six parts : cent vingt grammes de chocolat noir, quatre-vingts grammes de beurre, quatre-vingts grammes de sucre roux, deux œufs, soixante grammes de farine. Et des noix si tu aimes."
+    },
+    {
+      "type": "etape",
+      "texte": "Fais fondre chocolat + beurre",
+      "items": [
+        "chocolat",
+        "beurre"
+      ],
+      "resultat": "fondu",
+      "couleurs": [
+        "#3B2416",
+        "#F3D27A",
+        "#5A3418"
+      ],
+      "voix": "Fais fondre le chocolat avec le beurre, au micro-ondes, par petites sessions de trente secondes."
+    },
+    {
+      "type": "etape",
+      "texte": "Sucre, œufs, farine",
+      "items": [
+        "sucre",
+        "oeuf",
+        "farine"
+      ],
+      "resultat": "pate",
+      "couleurs": [
+        "#8A5A2B",
+        "#FFFFFF",
+        "#F4E3C1"
+      ],
+      "voix": "Ajoute le sucre, puis les œufs, et enfin la farine. Mélange jusqu'à obtenir une pâte bien brillante."
+    },
+    {
+      "type": "astuce",
+      "tag": "⚠️ L'ERREUR À ÉVITER",
+      "alerte": true,
+      "hero": "plat",
+      "texte": "Trop cuire = un brownie sec",
+      "voix": "L'erreur à éviter : trop le cuire ! Le centre doit encore trembler un peu quand tu le sors."
+    },
+    {
+      "type": "etape",
+      "texte": "Dans le moule + noix",
+      "items": [
+        "pate",
+        "noix"
+      ],
+      "couleurs": [
+        "#5A3418",
+        "#B98544",
+        "#3B2416"
+      ],
+      "voix": "Verse la pâte dans un petit moule rectangulaire, et parsème de noix concassées pour le croquant."
+    },
+    {
+      "type": "cuisson",
+      "temp": 160,
+      "minutes": 14,
+      "dans": "pate",
+      "voix": "Direction l'airfryer : cent soixante degrés, entre douze et quatorze minutes. L'odeur qui sort, c'est déjà le paradis."
+    },
+    {
+      "type": "resultat",
+      "labels": [
+        "CROÛTE CRAQUANTE",
+        "CŒUR FONDANT"
+      ],
+      "voix": "[excited] Et voilà ! Une croûte qui craque, et un cœur ultra fondant. Exactement comme à la pâtisserie."
+    },
+    {
+      "type": "astuce",
+      "hero": "plat",
+      "texte": "Laisse-le refroidir 15 min avant de le couper",
+      "voix": "Mon astuce : laisse-le refroidir quinze minutes avant de le couper. Les parts seront parfaites."
+    },
+    {
+      "type": "cta",
+      "titre": "Enregistre la recette",
+      "texte": "Une recette Airfryer chaque jour 💚",
+      "voix": "Enregistre la recette pour ce week-end, et abonne-toi pour une recette airfryer chaque jour !"
+    }
+  ],
+  "legende": "Le brownie le plus fondant du monde… à l'airfryer 🍫😍 14 min, un seul bol !\n\n🛒 Pour 6 parts :\n• 120 g de chocolat noir\n• 80 g de beurre\n• 80 g de sucre roux\n• 2 œufs\n• 60 g de farine\n• Noix (option)\n\n👩‍🍳 Préparation :\n1. Fais fondre le chocolat et le beurre\n2. Ajoute le sucre, les œufs puis la farine\n3. Verse dans un petit moule, parsème de noix\n4. Airfryer 160°C, 12 à 14 min (le centre doit encore trembler !)\n\n💡 L'astuce : laisse refroidir 15 min avant de couper\n\nEnregistre la recette pour ce week-end 💚 Et dis-moi en commentaire quelle recette tu veux demain 👇",
+  "hashtags": [
+    "airfryer",
+    "recetteairfryer",
+    "brownie",
+    "brownierecipe",
+    "recettefacile",
+    "dessertrapide",
+    "chocolat",
+    "healthyfry",
+    "airfryerfrance",
+    "foodtok"
+  ]
+}
