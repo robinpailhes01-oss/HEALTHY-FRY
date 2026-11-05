@@ -24,9 +24,10 @@ from render import (DELAI_VOIX, SFX as SFX_SYNTH, duree, fichier_ass, instants_i
                     prepare_sfx, run, voix_off as voix_edge, VOIX_DEFAUT)
 
 SFX_PRO = ICI / "sfx"
-DUREE_MIN_SCENE = {"hook": 3.2, "promesse": 3.6, "ingredients": 3.0, "etape": 3.8, "cuisson": 6.5,
-                   "resultat": 4.2, "astuce": 4.2, "cta": 3.6}
-ETIRABLES = ("resultat", "astuce", "cuisson", "promesse")
+# durée minimale dont chaque animation a besoin ; au-delà, la scène dure exactement le temps de sa phrase
+DUREE_MIN_SCENE = {"hook": 2.8, "promesse": 3.0, "ingredients": 2.5, "etape": 2.8, "cuisson": 5.0,
+                   "resultat": 3.4, "astuce": 3.0, "cta": 3.0}
+MARGE = 0.12          # respiration après chaque phrase
 
 
 def son(nom):
@@ -70,20 +71,22 @@ def main():
         mp3 = tmp / f"v{i}.mp3"
         s["_mots"] = parle(s["voix"], r, mp3) if s.get("voix") else []
         s["_mp3"] = mp3 if s.get("voix") else None
-        dv = DELAI_VOIX + duree(mp3) + 0.3 if s.get("voix") else 0
+        dv = DELAI_VOIX + duree(mp3) + MARGE if s.get("voix") else 0
         s["_d"] = max(dv, DUREE_MIN_SCENE.get(s["type"], 3.0), float(s.get("duree", 0)))
         if s["type"] == "ingredients":
             rel = instants_ingredients([it.get("mot", it["label"]) for it in s["items"]], s["_mots"], s["_d"])
             s["_reveal"] = rel
-            s["_d"] = max(s["_d"], rel[-1] + 1.3)
+            s["_d"] = max(s["_d"], rel[-1] + 0.9)
 
     # ---- 2. au moins `duree_min` secondes (monétisation)
     total = sum(s["_d"] for s in scenes)
-    if total < cible:
-        ext = [s for s in scenes if s["type"] in ETIRABLES] or scenes[-2:]
-        for s in ext:
-            s["_d"] += (cible - total) / len(ext)
-        print(f"  durée naturelle {total:.1f}s → allongée à {cible:.1f}s")
+    if total < cible:   # on préfère du contenu en plus ; sinon on répartit le manque sur toutes les scènes (sans trou visible)
+        manque = cible - total
+        if manque > 3:
+            print(f"  ⚠️ texte trop court : {total:.1f}s naturelles, il manque {manque:.1f}s → ajoute une scène ou allonge la voix")
+        for s in scenes:
+            s["_d"] += manque * s["_d"] / total
+        print(f"  durée naturelle {total:.1f}s → {cible:.1f}s")
 
     # ---- 3. timeline pour le moteur d'animation
     assets = {k: os.path.relpath((base / v).resolve(), ICI) for k, v in r["assets"].items()}
@@ -127,7 +130,7 @@ def main():
         elif typ == "resultat":
             sfx += [("sparkle", a_ + .05, .6), ("crunch", a_ + .3, .5), ("pop", a_ + .7, .45), ("pop", a_ + 1.3, .45)]
         elif typ == "astuce":
-            sfx += [("pop", a_ + .05, .5), ("pop", a_ + .3, .4)]
+            sfx += [("stamp" if s.get("alerte") else "pop", a_ + .05, .5), ("pop", a_ + .25, .4)]
         elif typ == "cta":
             sfx += [("sparkle", a_ + .3, .45), ("pop", a_ + .25, .5)]
         t0 = b_

@@ -71,7 +71,7 @@ function put(id, cx, cy, { s = 1, r = 0, o = 1, w = null } = {}) {
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 
 // ------------------------------------------------------------------ particules
-let crumbs = [], steam = [];
+let crumbs = [], steam = [], dust = [];
 function burst(ctx, t0, t, cx, cy, couleurs, force = 1) {
   const dt = t - t0; if (dt < 0 || dt > 1.3) return;
   crumbs.forEach((p, k) => {
@@ -148,7 +148,7 @@ window.setup = async (timeline) => {
       });
     }
     if (S.type === 'astuce') {
-      mk(p + 'tag', '💡 ASTUCE', 'pill', 'font-size:48px');
+      mk(p + 'tag', esc(S.tag || '💡 ASTUCE'), 'pill', `font-size:48px;${S.alerte ? 'background:#C8553D' : ''}`);
       mk(p + 'card', `<div style="font-size:58px;font-weight:800;color:#2E5E3A;line-height:1.2">${esc(S.texte)}</div>`, 'card', 'width:900px;padding:56px 50px');
       mkImg(p + 'hero', S.hero || 'hero');
     }
@@ -161,6 +161,7 @@ window.setup = async (timeline) => {
   });
   const r = rnd(7);
   for (let i = 0; i < 70; i++) crumbs.push({ a: r() * Math.PI * 2, v: 500 + r() * 900, s: 5 + r() * 13, spin: r() });
+  for (let i = 0; i < 34; i++) dust.push({ x: r() * 1080, y: r() * 1920, s: 3 + r() * 9, v: 12 + r() * 30, ph: r() * 6, b: r() < .25 });
   for (let i = 0; i < 26; i++) steam.push({ x: r(), d: r() * 3, s: 60 + r() * 90, w: r() });
   const g = $('grain').getContext('2d'), im = g.createImageData(540, 960);
   for (let i = 0; i < im.data.length; i += 4) { const v = 128 + (r() - .5) * 255; im.data[i] = im.data[i + 1] = im.data[i + 2] = v; im.data[i + 3] = 255; }
@@ -172,37 +173,37 @@ window.setup = async (timeline) => {
 const MIETTES = ['#5a3418', '#b98544', '#7a4a22'];
 const R = {
   hook(S, p, t, a, b, fx) {
-    const hv = T.hookVideo, out = iC(P(t, b - .35, .35));
+    const hv = T.hookVideo, out = iC(P(t, b - .2, .2));
     if (!hv) {
       const pin = oB(P(t, a, .75));
       put(p + 'hero', 540, lerp(1950, 930, pin), { w: 940 * (lerp(.35, 1, pin) + (t - a) * .035 + out * 1.8), r: lerp(-28, -4, pin), o: 1 - out });
       burst(fx, a + .55, t, 540, 930, MIETTES);
     }
     (S.lignes || []).forEach((l, k) => {
-      const q = oB(P(t, a + .1 + k * .2, .45)), o = 1 - P(t, b - .3, .25);
+      const q = oB(P(t, a + .1 + k * .2, .45)), o = 1 - P(t, b - .15, .15);
       const e = E[p + 'w' + k]; e.style.color = hv ? '#fff' : '#2E5E3A'; e.style.textShadow = hv ? '0 6px 24px rgba(0,0,0,.55)' : 'none';
       put(p + 'w' + k, 540, 230 + k * 150, { s: lerp(2.2, 1, q), r: k === S.lignes.length - 1 ? -3 : 0, o: q > 0 ? cl(q * 2) * o : 0 });
     });
-    const bq = oC(P(t, a + 1.1, .3)), bo = 1 - P(t, b - .3, .25);
+    const bq = oC(P(t, a + 1.1, .3)), bo = 1 - P(t, b - .15, .15);
     put(p + 'badge', 720, 1210, { s: lerp(2.4, 1, bq), r: -8, o: bq > 0 ? bq * bo : 0 });
   },
   promesse(S, p, t, a, b, fx) {
-    const out = P(t, b - .3, .3), o = 1 - out;
-    const q = oB(P(t, a, .45)); put(p + 'titre', 540, 380, { s: lerp(.5, 1, q), o: q * o });
+    const out = P(t, b - .15, .15), o = 1 - out;
+    const q = oB(P(t, a, .3)); put(p + 'titre', 540, 380, { s: lerp(.5, 1, q), o: q * o });
     (S.stats || []).forEach((st, k) => {
-      const ka = a + .35 + k * .45, z = oB(P(t, ka, .45));
+      const ka = a + .15 + k * .3, z = oB(P(t, ka, .4));
       const x = [195, 540, 885][k] ?? 540, y = 700 + (k % 2) * 70;
       put(p + 'st' + k, x, y + Math.sin((t - ka) * 2 + k) * 8, { s: lerp(.2, 1, z), r: lerp(-20, (k - 1) * 4, z), o: z > 0 ? cl(z * 2) * o : 0 });
       const n = parseFloat(st[0]); if (!isNaN(n)) E[p + 'st' + k].querySelector('b').textContent = Math.round(n * oC(P(t, ka, .8)));
     });
-    const h = oC(P(t, a + .2, .7));
+    const h = oC(P(t, a, .5));
     put(p + 'hero', 540, lerp(1700, 1180, h) + Math.sin(t * 1.5) * 10, { w: 760, r: lerp(20, -3, h) + Math.sin(t) * 2, o: h * o });
   },
   ingredients(S, p, t, a, b, fx) {
     const n = S.items.length, rows = Math.ceil(n / 2), top = 640, bot = 1180;
     const dy = rows > 1 ? (bot - top) / (rows - 1) : 0, w = rows >= 4 ? 230 : rows === 3 ? 290 : 360;
-    const q = oB(P(t, a, .45)), out = ioS(P(t, b - .5, .5));
-    put(p + 'titre', 540, 340, { s: q, o: q * (1 - P(t, b - .3, .3)) });
+    const q = oB(P(t, a, .3)), out = ioS(P(t, b - .35, .35));
+    put(p + 'titre', 540, 340, { s: q, o: q * (1 - P(t, b - .15, .15)) });
     S.items.forEach((it, k) => {
       const row = Math.floor(k / 2), seul = (k === n - 1 && n % 2 === 1);
       const x0 = seul ? 540 : (k % 2 ? 790 : 290), y0 = top + row * dy - 60;
@@ -210,11 +211,11 @@ const R = {
       const x = lerp(x0, 540, out), y = lerp(lerp(y0 - 700, y0, z) + bob, 950, out);
       put(p + 'i' + k, x, y, { w: w * lerp(.3, 1, z) * (1 - out), r: lerp(-35 + k * 15, k % 2 ? 6 : -6, z) + out * 360, o: t >= ta ? 1 : 0 });
       const lz = oB(P(t, ta + .2, .35));
-      put(p + 'l' + k, x0, y0 + w * .42 + 22, { s: lz * .95, o: t >= ta + .2 ? lz * (1 - P(t, b - .5, .2)) : 0 });
+      put(p + 'l' + k, x0, y0 + w * .42 + 22, { s: lz * .95, o: t >= ta + .2 ? lz * (1 - P(t, b - .35, .15)) : 0 });
     });
   },
   etape(S, p, t, a, b, fx) {
-    const out = P(t, b - .3, .3), o = 1 - out;
+    const out = P(t, b - .15, .15), o = 1 - out;
     const nq = oC(P(t, a, .6)); put(p + 'num', 540, 980, { s: lerp(1.3, 1, nq), o: nq * o });
     const tq = oB(P(t, a, .4)); put(p + 'tag', 540, 300, { s: tq, o: tq * o });
     String(S.texte).split(' ').forEach((m, k) => {
@@ -222,11 +223,11 @@ const R = {
       e.style.transform = `translateY(${lerp(60, 0, z)}px) scale(${lerp(.6, 1, z)})`; e.style.opacity = cl(z * 1.5);
     });
     put(p + 'texte', 540, 470, { o });
-    const items = S.items || [], n = items.length, choc = a + Math.min(1.3, (b - a) * .35);
+    const items = S.items || [], n = items.length, choc = a + Math.min(1.0, (b - a) * .3);
     items.forEach((it, k) => {
       const ang = (k / Math.max(n, 1)) * Math.PI * 2 + Math.PI / 2;
       const sx = 540 + Math.cos(ang) * 700, sy = 1000 + Math.sin(ang) * 500;
-      const vient = oC(P(t, a + .1 + k * .12, .6)), fusion = ioS(P(t, choc - .35, .35));
+      const vient = oC(P(t, a + k * .08, .45)), fusion = ioS(P(t, choc - .35, .35));
       const rayon = n > 1 ? lerp(280, 150, fusion) : 0, tour = fusion * (t - choc + .35) * 1.6;   // mélange : rotation autour du centre
       const ex = 540 + Math.cos(ang + tour) * rayon, ey = 1010 + Math.sin(ang + tour) * rayon * .75;
       const x = lerp(sx, ex, vient), y = lerp(sy, ey, vient);
@@ -238,27 +239,27 @@ const R = {
     if (S.resultat) { const z = oB(P(t, choc, .5)); put(p + 'res', 540, 1000 + Math.sin(t * 1.6) * 10, { w: 620 * lerp(.2, 1, z), r: Math.sin(t) * 3, o: t >= choc ? o : 0 }); sparkles(fx, t, choc, 540, 1000); }
   },
   cuisson(S, p, t, a, b, fx) {
-    const chaud = P(t, a + 1.4, .6) * (1 - P(t, b - .3, .3));
+    const chaud = P(t, a + .8, .5) * (1 - P(t, b - .15, .15));
     T._chaud = chaud;
-    if (S.dans) { const z = oB(P(t, a, .4)), into = ioS(P(t, a + .8, .45)); put(p + 'dans', 540, lerp(900, 1000, into), { w: 560 * z * lerp(1, .2, into), r: (t - a) * 30, o: into < 1 ? 1 : 0 }); }
-    const af = oC(P(t, a + .5, .5)), ao = iC(P(t, b - .4, .4)), shake = Math.sin(t * 60) * 1.5 * chaud;
+    if (S.dans) { const z = oB(P(t, a, .3)), into = ioS(P(t, a + .45, .4)); put(p + 'dans', 540, lerp(900, 1000, into), { w: 560 * z * lerp(1, .2, into), r: (t - a) * 30, o: into < 1 ? 1 : 0 }); }
+    const af = oC(P(t, a + .2, .45)), ao = iC(P(t, b - .25, .25)), shake = Math.sin(t * 60) * 1.5 * chaud;
     E[p + 'af'].style.filter = `drop-shadow(0 40px 38px rgba(60,40,20,.35)) drop-shadow(0 0 ${60 * chaud}px rgba(255,140,40,${.75 * chaud}))`;
     put(p + 'af', lerp(1500, 540, af) + shake, 1000 + ao * 1400, { w: 640, o: ao < 1 ? 1 : 0 });
     vapeur(fx, t, 540, 640, 300, chaud);
-    const tv = oC(P(t, a + 1.2, .35)) * (1 - P(t, b - .35, .3));
-    const tp = P(t, a + 1.3, .7), tm = P(t, a + 1.9, b - a - 2.4);
+    const tv = oC(P(t, a + .6, .3)) * (1 - P(t, b - .2, .2));
+    const tp = P(t, a + .7, .6), tm = P(t, a + 1.2, b - a - 1.5);
     E[p + 'temp'].textContent = Math.round(lerp(20, S.temp, oC(tp))) + '°C';
     const sec = Math.round(S.minutes * 60 * (1 - tm)); E[p + 'clock'].textContent = `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`;
     put(p + 'temp', 540, 300, { s: lerp(.6, 1, tv), o: tv }); put(p + 'clock', 540, 430, { s: lerp(.6, 1, tv), o: tv });
     const ring = E[p + 'ring'], circ = 2 * Math.PI * 430; ring.style.strokeDasharray = circ; ring.style.strokeDashoffset = circ * (1 - tm); ring.style.opacity = tv * .9;
   },
   resultat(S, p, t, a, b, fx) {
-    const z = oB(P(t, a, .7)), out = iC(P(t, b - .35, .35));
+    const z = oB(P(t, a, .5)), out = iC(P(t, b - .2, .2));
     put(p + 'hero', 540, 930 - out * 300, { w: 940 * (lerp(.15, 1.12, z) + (t - a) * .03) * (1 - out * .45), r: lerp(14, 2, z), o: 1 - out * .2 });
-    vapeur(fx, t, 540, 820, 500, 1 - P(t, b - .4, .4));
+    vapeur(fx, t, 540, 820, 500, 1 - P(t, b - .25, .25));
     burst(fx, a + .05, t, 540, 930, MIETTES);
     sparkles(fx, t, a + .1, 540, 930, 12, 520);
-    const fade = 1 - P(t, b - .35, .3);
+    const fade = 1 - P(t, b - .2, .2);
     (S.labels || []).forEach((l, k) => {
       const la = a + .7 + k * .6, q = oB(P(t, la, .4));
       put(p + 'lab' + k, k ? 790 : 300, k ? 1300 : 590, { s: q, r: k ? 3 : -3, o: t > la ? q * fade : 0 });
@@ -268,14 +269,14 @@ const R = {
     T._flash = Math.max(T._flash, Math.max(0, 1 - P(t, a, .25)) * .7);
   },
   astuce(S, p, t, a, b, fx) {
-    const out = P(t, b - .3, .3), o = 1 - out;
-    const q = oB(P(t, a, .45)); put(p + 'tag', 540, 420, { s: q, r: -3, o: q * o });
-    const c = oB(P(t, a + .25, .5)); put(p + 'card', 540, 720, { s: lerp(.5, 1, c), o: c * o });
-    const h = oC(P(t, a + .4, .7)); put(p + 'hero', 540, lerp(1800, 1250, h) + Math.sin(t * 1.6) * 12, { w: 640, r: Math.sin(t) * 4, o: h * o });
+    const out = P(t, b - .15, .15), o = 1 - out;
+    const q = oB(P(t, a, .3)); put(p + 'tag', 540, 420, { s: q, r: -3, o: q * o });
+    const c = oB(P(t, a + .1, .4)); put(p + 'card', 540, 720, { s: lerp(.5, 1, c), o: c * o });
+    const h = oC(P(t, a + .1, .5)); put(p + 'hero', 540, lerp(1800, 1250, h) + Math.sin(t * 1.6) * 12, { w: 640, r: Math.sin(t) * 4, o: h * o });
   },
   cta(S, p, t, a, b, fx) {
     const h = oC(P(t, a, .5)); put(p + 'hero', 540, lerp(930, 640, h), { w: 940 * lerp(1.12, .7, h), r: 2 });
-    const c = oB(P(t, a + .2, .5)); put(p + 'card', 540, 1150, { s: lerp(.4, 1, c), o: t > a + .2 ? cl(c * 1.5) : 0 });
+    const c = oB(P(t, a + .05, .4)); put(p + 'card', 540, 1150, { s: lerp(.4, 1, c), o: t > a + .05 ? cl(c * 1.5) : 0 });
     sparkles(fx, t, a + .3, 540, 640, 10, 420);
   },
 };
@@ -288,6 +289,12 @@ window.render = (t) => {
   T._chaud = 0; T._flash = 0;
   let idx = T.scenes.findIndex((S) => t >= S.a && t < S.b); if (idx < 0) idx = T.scenes.length - 1;
   const S = T.scenes[idx];
+  if (!(T.hookVideo && S.type === 'hook')) for (const d of dust) {   // poussière / bokeh d'ambiance permanente
+    const y = ((d.y - t * d.v) % 1920 + 1920) % 1920, x = d.x + Math.sin(t * .5 + d.ph) * 25;
+    fx.globalAlpha = .35 + .25 * Math.sin(t + d.ph); fx.fillStyle = d.b ? '#6BAF6E' : '#FFFFFF';
+    fx.beginPath(); fx.arc(x, y, d.b ? d.s * 2.2 : d.s, 0, 7); fx.fill();
+  }
+  fx.globalAlpha = 1;
   R[S.type](S, `s${idx}_`, t, S.a, S.b, fx);
   // petit « coup de caméra » à chaque changement de scène
   const k = P(t, S.a, .35); $('stage').style.transform = `scale(${1 + .05 * (1 - oC(k))})`;

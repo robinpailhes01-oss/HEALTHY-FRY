@@ -53,7 +53,7 @@
           "FRITURE"
         ]
       ],
-      "voix": "Huit minutes de cuisson, sept ingrédients, et zéro friture. [laughs] T'as plus aucune excuse."
+      "voix": "Huit minutes de cuisson, sept ingrédients, zéro friture. [laughs] Franchement, t'as plus aucune excuse pour ne pas le faire."
     },
     {
       "type": "ingredients",
@@ -99,7 +99,7 @@
         "#8A5A2B",
         "#FFF3C4"
       ],
-      "voix": "Fouette le beurre mou avec le sucre, jusqu'à ce que ce soit bien crémeux."
+      "voix": "Fouette le beurre mou avec le sucre roux, jusqu'à ce que ce soit bien crémeux et un peu plus clair."
     },
     {
       "type": "etape",
@@ -113,7 +113,15 @@
         "#F4E3C1",
         "#E8B04A"
       ],
-      "voix": "Ajoute l'œuf, puis la farine, une pincée de sel et un peu de levure. Surtout, ne travaille pas trop la pâte."
+      "voix": "Ajoute l'œuf, puis la farine, une pincée de sel et un peu de levure. Mélange juste ce qu'il faut."
+    },
+    {
+      "type": "astuce",
+      "tag": "⚠️ L'ERREUR À ÉVITER",
+      "alerte": true,
+      "hero": "cookie",
+      "texte": "Trop travailler la pâte = des cookies durs",
+      "voix": "Attention, l'erreur que tout le monde fait : trop travailler la pâte. Résultat, des cookies durs comme de la pierre !"
     },
     {
       "type": "etape",
@@ -126,7 +134,7 @@
         "#5A3418",
         "#2A180E"
       ],
-      "voix": "Les pépites de chocolat ! Gardes-en quelques-unes pour le dessus."
+      "voix": "Ensuite, les pépites de chocolat ! Gardes-en quelques-unes pour le dessus, c'est ça qui fait l'effet waouh."
     },
     {
       "type": "etape",
@@ -148,7 +156,7 @@
         "CROUSTILLANT",
         "FONDANT"
       ],
-      "voix": "[excited] Et là… regarde-moi ça ! Croustillant dehors, ultra fondant dedans."
+      "voix": "[excited] Et là… regarde-moi ça ! Croustillant dehors, ultra fondant dedans. Un vrai cookie de boulangerie."
     },
     {
       "type": "astuce",
@@ -159,7 +167,7 @@
       "type": "cta",
       "titre": "Enregistre la recette",
       "texte": "Une recette Airfryer chaque jour 💚",
-      "voix": "Enregistre la recette, et abonne-toi pour une recette airfryer chaque jour !"
+      "voix": "Enregistre la recette pour ne pas la perdre, et abonne-toi pour une nouvelle recette airfryer chaque jour !"
     }
   ],
   "legende": "Le cookie le plus fondant à l'airfryer 😍 160°C – 8 min, zéro friture. Enregistre la recette 💚\n\n🍪 Pour 4 cookies : 1 œuf, 60 g sucre roux, 120 g farine, 60 g beurre mou, 100 g pépites de chocolat, ½ c.à.c levure, 1 pincée de sel",
