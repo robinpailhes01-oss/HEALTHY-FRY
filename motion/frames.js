@@ -12,7 +12,7 @@ const fs = require('fs'); const path = require('path');
   await page.evaluate((t) => window.setup(t), T);
   const ff = spawn('ffmpeg', ['-y', '-v', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-',
     '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '16', '-pix_fmt', 'yuv420p', out], { stdio: ['pipe', 'inherit', 'inherit'] });
-  const nHook = T.hookVideo ? Math.round(T.hook[1] * FPS) : 0;
+  const nHook = T.hookVideo ? Math.round(T.scenes[0].b * FPS) : 0;
   if (nHook) fs.mkdirSync(out + '_hook', { recursive: true });
   for (let i = 0; i < n; i++) {
     await page.evaluate((t) => window.render(t), i / FPS);

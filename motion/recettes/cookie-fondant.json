@@ -1,0 +1,57 @@
+{
+  "titre": "Le cookie le plus fondant à l'Airfryer",
+  "handle": "@healthyfry",
+  "duree_min": 62,
+  "voix": {
+    "elevenlabs_id": null,
+    "modele": "eleven_multilingual_v2",
+    "stabilite": 0.35, "style": 0.5, "vitesse": 1.05,
+    "edge": "fr-FR-VivienneMultilingualNeural", "vitesse_edge": "+8%"
+  },
+  "accroche_video": "../../montage/exemple/veo/veo_hook.mp4",
+  "accroche_debut": 2.6,
+  "musique": null,
+  "assets": {
+    "hero": "../cut/cookie_casse.png",
+    "cookie": "../cut/cookie_entier.png",
+    "oeuf": "../cut/oeuf.png",
+    "sucre": "../cut/sucre.png",
+    "farine": "../cut/farine.png",
+    "beurre": "../cut/beurre.png",
+    "chocolat": "../cut/chocolat.png",
+    "airfryer": "../cut/airfryer.png"
+  },
+  "scenes": [
+    { "type": "hook", "lignes": ["LE COOKIE", "LE PLUS", "FONDANT"], "badge": "PRÊT EN 8 MIN",
+      "voix": "Le cookie le plus fondant que tu puisses faire à l'airfryer." },
+    { "type": "promesse", "titre": "ULTRA SIMPLE", "stats": [["8", "MINUTES"], ["7", "INGRÉDIENTS"], ["0", "FRITURE"]],
+      "voix": "Huit minutes de cuisson, sept ingrédients du placard, et zéro friture. Franchement, tu n'as plus aucune excuse." },
+    { "type": "ingredients", "titre": "POUR 4 GROS COOKIES",
+      "items": [
+        { "img": "oeuf", "label": "1 œuf", "mot": "œuf" },
+        { "img": "sucre", "label": "60 g sucre roux", "mot": "sucre" },
+        { "img": "farine", "label": "120 g farine", "mot": "farine" },
+        { "img": "beurre", "label": "60 g beurre mou", "mot": "beurre" },
+        { "img": "chocolat", "label": "100 g pépites", "mot": "pépites" }
+      ],
+      "voix": "Pour quatre gros cookies, il te faut un œuf, soixante grammes de sucre roux, cent vingt grammes de farine, soixante grammes de beurre mou, et cent grammes de pépites de chocolat. Plus une pincée de sel et un peu de levure." },
+    { "type": "etape", "texte": "Beurre mou + sucre", "items": ["beurre", "sucre"], "couleurs": ["#F3D27A", "#8A5A2B", "#FFF3C4"],
+      "voix": "Commence par fouetter le beurre mou avec le sucre, jusqu'à ce que ce soit bien crémeux." },
+    { "type": "etape", "texte": "Ajoute l'œuf et la farine", "items": ["oeuf", "farine"], "couleurs": ["#FFFFFF", "#F4E3C1", "#E8B04A"],
+      "voix": "Ajoute l'œuf, puis la farine, la levure et le sel. Mélange juste ce qu'il faut, surtout ne travaille pas trop la pâte." },
+    { "type": "etape", "texte": "Le chocolat !", "items": ["chocolat"], "couleurs": ["#3B2416", "#5A3418", "#2A180E"],
+      "voix": "Incorpore les pépites de chocolat, et gardes-en quelques-unes pour le dessus : c'est ça qui fait l'effet waouh." },
+    { "type": "etape", "texte": "Grosses boules épaisses", "items": [], "resultat": "cookie",
+      "voix": "Forme quatre grosses boules bien épaisses, et aplatis-les à peine. C'est le secret d'un cœur coulant." },
+    { "type": "cuisson", "temp": 160, "minutes": 8, "dans": "cookie",
+      "voix": "Direction l'airfryer : cent soixante degrés pendant huit minutes. Pas une de plus ! Ils doivent encore paraître un peu mous en sortant." },
+    { "type": "resultat", "labels": ["CROUSTILLANT", "FONDANT"],
+      "voix": "Laisse-les reposer cinq minutes… et regarde-moi ça. Croustillant dehors, ultra fondant dedans." },
+    { "type": "astuce", "texte": "Une pincée de fleur de sel sur le dessus avant de servir",
+      "voix": "Mon astuce : une pincée de fleur de sel sur le dessus, juste avant de servir. Ça change absolument tout." },
+    { "type": "cta", "titre": "Enregistre la recette", "texte": "Une recette Airfryer chaque jour 💚",
+      "voix": "Enregistre la recette pour ne pas la perdre, et abonne-toi : une nouvelle recette airfryer chaque jour." }
+  ],
+  "legende": "Le cookie le plus fondant à l'airfryer 😍 160°C – 8 min, zéro friture. Enregistre la recette 💚\n\n🍪 Pour 4 cookies : 1 œuf, 60 g sucre roux, 120 g farine, 60 g beurre mou, 100 g pépites de chocolat, ½ c.à.c levure, 1 pincée de sel",
+  "hashtags": ["airfryer", "recetteairfryer", "cookie", "recettefacile", "dessertrapide", "healthyfry", "airfryerfrance"]
+}
