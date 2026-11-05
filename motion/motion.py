@@ -40,7 +40,26 @@ def son(nom):
     return SFX_SYNTH / f"{repli}.wav" if repli and (SFX_SYNTH / f"{repli}.wav").exists() else None
 
 
+CACHE = ICI / "cache_voix"
+
+
 def parle(texte, r, sortie):
+    """Voix off, mise en cache (même texte + mêmes réglages = aucun quota reconsommé)."""
+    import hashlib
+    v = r.get("voix", {})
+    cle = hashlib.sha1(json.dumps([texte, v, elevenlabs.dispo()], sort_keys=True).encode()).hexdigest()[:16]
+    mp3c, jsc = CACHE / f"{cle}.mp3", CACHE / f"{cle}.json"
+    if mp3c.exists() and jsc.exists():
+        shutil.copy(mp3c, sortie)
+        return json.loads(jsc.read_text())
+    mots = _parle(texte, r, sortie)
+    CACHE.mkdir(exist_ok=True)
+    shutil.copy(sortie, mp3c)
+    jsc.write_text(json.dumps(mots, ensure_ascii=False))
+    return mots
+
+
+def _parle(texte, r, sortie):
     v = r.get("voix", {})
     if elevenlabs.dispo() and v.get("elevenlabs_id"):
         return elevenlabs.voix_off(texte, v["elevenlabs_id"], sortie, v.get("modele", "eleven_multilingual_v2"),

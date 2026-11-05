@@ -200,8 +200,8 @@ const R = {
     put(p + 'hero', 540, lerp(1700, 1180, h) + Math.sin(t * 1.5) * 10, { w: 760, r: lerp(20, -3, h) + Math.sin(t) * 2, o: h * o });
   },
   ingredients(S, p, t, a, b, fx) {
-    const n = S.items.length, rows = Math.ceil(n / 2), top = 640, bot = 1180;
-    const dy = rows > 1 ? (bot - top) / (rows - 1) : 0, w = rows >= 4 ? 230 : rows === 3 ? 290 : 360;
+    const n = S.items.length, rows = Math.ceil(n / 2), top = rows >= 3 ? 590 : 640, bot = rows >= 3 ? 1230 : 1180;
+    const dy = rows > 1 ? (bot - top) / (rows - 1) : 0, w = rows >= 4 ? 210 : rows === 3 ? 250 : 360;
     const q = oB(P(t, a, .3)), out = ioS(P(t, b - .35, .35));
     put(p + 'titre', 540, 340, { s: q, o: q * (1 - P(t, b - .15, .15)) });
     S.items.forEach((it, k) => {
