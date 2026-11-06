@@ -51,7 +51,11 @@ def parle(texte, r, sortie, style=""):
     mp3c, jsc = CACHE / f"{cle}.mp3", CACHE / f"{cle}.json"
     if mp3c.exists() and jsc.exists():
         shutil.copy(mp3c, sortie)
-        return json.loads(jsc.read_text())
+        mots = json.loads(jsc.read_text())
+        if v.get("gemini"):
+            import gemini_tts
+            mots = gemini_tts.recaler(texte, mots)
+        return mots
     mots = _parle(texte, r, sortie, style)
     CACHE.mkdir(exist_ok=True)
     shutil.copy(sortie, mp3c)

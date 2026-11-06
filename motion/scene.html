@@ -207,7 +207,7 @@ const R = {
     S.items.forEach((it, k) => {
       const row = Math.floor(k / 2), seul = (k === n - 1 && n % 2 === 1);
       const x0 = seul ? 540 : (k % 2 ? 790 : 290), y0 = top + row * dy - 60;
-      const ta = S.reveal[k], z = oB(P(t, ta, .55)), bob = Math.sin((t - ta) * 2.2 + k) * 8;
+      const ta = k === 0 ? Math.min(S.reveal[0], a + .35) : S.reveal[k], z = oB(P(t, ta, .55)), bob = Math.sin((t - ta) * 2.2 + k) * 8;
       const x = lerp(x0, 540, out), y = lerp(lerp(y0 - 700, y0, z) + bob, 950, out);
       put(p + 'i' + k, x, y, { w: w * lerp(.3, 1, z) * (1 - out), r: lerp(-35 + k * 15, k % 2 ? 6 : -6, z) + out * 360, o: t >= ta ? 1 : 0 });
       const lz = oB(P(t, ta + .2, .35));

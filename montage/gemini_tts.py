@@ -54,4 +54,41 @@ def voix_off(texte, sortie, voix="Laomedeia", style="", temperature=1.0):
                     "silenceremove=start_periods=1:start_threshold=-45dB,areverse",
                     "-ar", "44100", "-ac", "1", "-b:a", "160k", str(sortie)], check=True)
     brut.unlink(missing_ok=True)
-    return aligner(sortie, texte)
+    return recaler(texte, aligner(sortie, texte))
+
+
+def _norm(m):
+    import unicodedata
+    m = "".join(c for c in unicodedata.normalize("NFD", m.lower()) if unicodedata.category(c) != "Mn")
+    return re.sub(r"[^a-z0-9']", "", m)
+
+
+def recaler(texte, mots_whisper):
+    """Sous-titres = mots EXACTS du script ; Whisper ne sert qu'à donner les instants.
+    Les mots non reconnus (chiffres écrits en toutes lettres…) sont placés par interpolation."""
+    import difflib
+    script = re.sub(r"<[^>]+>", " ", texte).split()
+    if not mots_whisper or not script:
+        return mots_whisper
+    a = [_norm(m) for m in script]
+    b = [_norm(w["mot"]) for w in mots_whisper]
+    t = [None] * len(script)
+    for bloc in difflib.SequenceMatcher(None, a, b, autojunk=False).get_matching_blocks():
+        for k in range(bloc.size):
+            t[bloc.a + k] = (mots_whisper[bloc.b + k]["t"], mots_whisper[bloc.b + k]["d"])
+    debut, fin = mots_whisper[0]["t"], mots_whisper[-1]["t"] + mots_whisper[-1]["d"]
+    i = 0
+    while i < len(t):
+        if t[i] is None:
+            j = i
+            while j < len(t) and t[j] is None:
+                j += 1
+            t0 = t[i - 1][0] + t[i - 1][1] if i > 0 else debut
+            t1 = t[j][0] if j < len(t) else fin
+            pas = max(0.05, (t1 - t0) / (j - i))
+            for k in range(i, j):
+                t[k] = (t0 + (k - i) * pas, pas * 0.9)
+            i = j
+        else:
+            i += 1
+    return [{"t": x[0], "d": x[1], "mot": m} for m, x in zip(script, t)]
