@@ -223,7 +223,7 @@ const R = {
       e.style.transform = `translateY(${lerp(60, 0, z)}px) scale(${lerp(.6, 1, z)})`; e.style.opacity = cl(z * 1.5);
     });
     put(p + 'texte', 540, 470, { o });
-    const items = S.items || [], n = items.length, choc = a + Math.min(1.0, (b - a) * .3);
+    const items = S.items || [], n = items.length, choc = n ? a + Math.min(1.0, (b - a) * .3) : a + .12;   // sans ingrédients : le résultat apparaît tout de suite
     items.forEach((it, k) => {
       const ang = (k / Math.max(n, 1)) * Math.PI * 2 + Math.PI / 2;
       const sx = 540 + Math.cos(ang) * 700, sy = 1000 + Math.sin(ang) * 500;
