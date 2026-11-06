@@ -43,24 +43,27 @@ def son(nom):
 CACHE = ICI / "cache_voix"
 
 
-def parle(texte, r, sortie):
+def parle(texte, r, sortie, style=""):
     """Voix off, mise en cache (même texte + mêmes réglages = aucun quota reconsommé)."""
     import hashlib
     v = r.get("voix", {})
-    cle = hashlib.sha1(json.dumps([texte, v, elevenlabs.dispo()], sort_keys=True).encode()).hexdigest()[:16]
+    cle = hashlib.sha1(json.dumps([texte, v, style, elevenlabs.dispo()], sort_keys=True).encode()).hexdigest()[:16]
     mp3c, jsc = CACHE / f"{cle}.mp3", CACHE / f"{cle}.json"
     if mp3c.exists() and jsc.exists():
         shutil.copy(mp3c, sortie)
         return json.loads(jsc.read_text())
-    mots = _parle(texte, r, sortie)
+    mots = _parle(texte, r, sortie, style)
     CACHE.mkdir(exist_ok=True)
     shutil.copy(sortie, mp3c)
     jsc.write_text(json.dumps(mots, ensure_ascii=False))
     return mots
 
 
-def _parle(texte, r, sortie):
+def _parle(texte, r, sortie, style=""):
     v = r.get("voix", {})
+    if v.get("gemini"):   # Gemini 3.8 TTS via kie.ai + alignement Whisper
+        import gemini_tts
+        return gemini_tts.voix_off(texte, sortie, v["gemini"], (v.get("style_base", "") + " " + style).strip())
     if elevenlabs.dispo() and v.get("elevenlabs_id"):
         return elevenlabs.voix_off(texte, v["elevenlabs_id"], sortie, v.get("modele", "eleven_multilingual_v2"),
                                    v.get("stabilite", 0.35), v.get("style", 0.45), v.get("vitesse", 1.05))
@@ -85,10 +88,12 @@ def main():
     nb_etapes = sum(1 for s in scenes if s["type"] == "etape")
 
     # ---- 1. voix off scène par scène
-    print("▶ Voix off :", "ElevenLabs" if elevenlabs.dispo() and r.get("voix", {}).get("elevenlabs_id") else "Edge (gratuite)")
+    vv = r.get("voix", {})
+    print("▶ Voix off :", f"Gemini TTS ({vv['gemini']})" if vv.get("gemini") else
+          "ElevenLabs" if elevenlabs.dispo() and vv.get("elevenlabs_id") else "Edge (gratuite)")
     for i, s in enumerate(scenes):
         mp3 = tmp / f"v{i}.mp3"
-        s["_mots"] = parle(s["voix"], r, mp3) if s.get("voix") else []
+        s["_mots"] = parle(s["voix"], r, mp3, s.get("style", "")) if s.get("voix") else []
         s["_mp3"] = mp3 if s.get("voix") else None
         dv = DELAI_VOIX + duree(mp3) + MARGE if s.get("voix") else 0
         s["_d"] = max(dv, DUREE_MIN_SCENE.get(s["type"], 3.0), float(s.get("duree", 0)))
@@ -115,7 +120,7 @@ def main():
     k_etape = 0
     for i, s in enumerate(scenes):
         a_, b_ = t0, t0 + s["_d"]
-        sc = {k: v for k, v in s.items() if not k.startswith("_") and k != "voix"}
+        sc = {k: v for k, v in s.items() if not k.startswith("_") and k not in ("voix", "style")}
         sc.update(a=round(a_, 3), b=round(b_, 3))
         if s["type"] == "etape":
             k_etape += 1

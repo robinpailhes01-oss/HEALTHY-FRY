@@ -1,0 +1,197 @@
+{
+  "titre": "Madeleines dorées à l'Airfryer",
+  "handle": "@healthyfry",
+  "duree_min": 62,
+  "voix": {
+    "gemini": "Laomedeia",
+    "style_base": "Jeune femme française native, accent parisien naturel, créatrice de contenu food sur TikTok. Voix énergique, souriante et chaleureuse, rythme vif, très expressive, comme si elle parlait à une amie."
+  },
+  "accroche_video": "madeleines/accroche_veo.mp4",
+  "accroche_debut": 2.5,
+  "musique": null,
+  "assets": {
+    "hero": "madeleines/cut/madeleine_hero.png",
+    "plat": "madeleines/cut/madeleines_plat.png",
+    "pate": "madeleines/cut/pate.png",
+    "beurre_fondu": "madeleines/cut/beurre_fondu.png",
+    "citron": "madeleines/cut/citron.png",
+    "sucre": "madeleines/cut/sucre_blanc.png",
+    "moule": "madeleines/cut/moule.png",
+    "oeuf": "../cut/oeuf.png",
+    "farine": "../cut/farine.png",
+    "airfryer": "../cut/airfryer.png"
+  },
+  "scenes": [
+    {
+      "type": "hook",
+      "lignes": [
+        "DES MADELEINES",
+        "AVEC LA",
+        "BOSSE !"
+      ],
+      "badge": "AIRFRYER · 9 MIN",
+      "style": "Très enthousiaste, comme une révélation.",
+      "voix": "Des madeleines dorées, avec la fameuse bosse… à l'airfryer !"
+    },
+    {
+      "type": "promesse",
+      "titre": "COMME À LA BOULANGERIE",
+      "stats": [
+        [
+          "6",
+          "INGRÉDIENTS"
+        ],
+        [
+          "9",
+          "MINUTES"
+        ],
+        [
+          "12",
+          "MADELEINES"
+        ]
+      ],
+      "style": "Complice et amusée.",
+      "voix": "Six ingrédients, neuf minutes de cuisson, et douze madeleines toutes moelleuses. <laugh> Franchement, c'est trop facile."
+    },
+    {
+      "type": "ingredients",
+      "titre": "POUR 12 MADELEINES",
+      "items": [
+        {
+          "img": "oeuf",
+          "label": "2 œufs",
+          "mot": "œufs"
+        },
+        {
+          "img": "sucre",
+          "label": "80 g sucre",
+          "mot": "sucre"
+        },
+        {
+          "img": "farine",
+          "label": "120 g farine",
+          "mot": "farine"
+        },
+        {
+          "img": "beurre_fondu",
+          "label": "100 g beurre fondu",
+          "mot": "beurre"
+        },
+        {
+          "img": "citron",
+          "label": "Zeste de citron",
+          "mot": "citron"
+        }
+      ],
+      "style": "Claire et rythmée, comme une liste de courses enjouée.",
+      "voix": "Pour douze madeleines : deux œufs, quatre-vingts grammes de sucre, cent vingt grammes de farine, cent grammes de beurre fondu, un demi sachet de levure, et le zeste d'un citron."
+    },
+    {
+      "type": "etape",
+      "texte": "Œufs + sucre",
+      "items": [
+        "oeuf",
+        "sucre"
+      ],
+      "couleurs": [
+        "#FFFFFF",
+        "#F6E7B0",
+        "#E8B04A"
+      ],
+      "style": "Dynamique et précise.",
+      "voix": "Fouette les œufs avec le sucre, jusqu'à ce que le mélange blanchisse et devienne bien mousseux."
+    },
+    {
+      "type": "etape",
+      "texte": "Farine + levure",
+      "items": [
+        "farine"
+      ],
+      "couleurs": [
+        "#FFFFFF",
+        "#F4E3C1",
+        "#EDE3D0"
+      ],
+      "style": "Douce, attentive.",
+      "voix": "Ajoute la farine et la levure, et mélange délicatement, sans trop insister."
+    },
+    {
+      "type": "etape",
+      "texte": "Beurre fondu + citron",
+      "items": [
+        "beurre_fondu",
+        "citron"
+      ],
+      "resultat": "pate",
+      "couleurs": [
+        "#F3D27A",
+        "#F7E046",
+        "#FFF3C4"
+      ],
+      "style": "Gourmande.",
+      "voix": "Incorpore le beurre fondu et le zeste de citron. La pâte doit être bien lisse et brillante."
+    },
+    {
+      "type": "astuce",
+      "tag": "🤫 LE SECRET DE LA BOSSE",
+      "alerte": true,
+      "hero": "pate",
+      "texte": "30 min au frigo avant cuisson",
+      "style": "Mystérieuse et complice, presque en confidence.",
+      "voix": "Le secret de la bosse ? <whispers> Laisse reposer la pâte trente minutes au frigo. C'est le choc chaud-froid qui la fait gonfler !"
+    },
+    {
+      "type": "etape",
+      "texte": "Remplis les moules aux ¾",
+      "items": [],
+      "resultat": "moule",
+      "style": "Dynamique.",
+      "voix": "Remplis les moules aux trois quarts, pas plus, sinon ça déborde."
+    },
+    {
+      "type": "cuisson",
+      "temp": 180,
+      "minutes": 9,
+      "dans": "moule",
+      "style": "Énergique, avec impatience.",
+      "voix": "Airfryer à cent quatre-vingts degrés, entre huit et dix minutes. Elles doivent être bien dorées sur les bords."
+    },
+    {
+      "type": "resultat",
+      "labels": [
+        "BORDS DORÉS",
+        "CŒUR MOELLEUX"
+      ],
+      "style": "Émerveillée, ravie.",
+      "voix": "<gasp> Regarde-moi cette bosse ! Des bords dorés, et un cœur tout moelleux."
+    },
+    {
+      "type": "astuce",
+      "hero": "plat",
+      "texte": "Démoule-les tièdes, garde-les dans une boîte fermée",
+      "style": "Chaleureuse, conseil d'amie.",
+      "voix": "Mon astuce : démoule-les encore tièdes, et garde-les dans une boîte fermée. Elles restent moelleuses deux jours."
+    },
+    {
+      "type": "cta",
+      "titre": "Enregistre la recette",
+      "texte": "Une recette Airfryer chaque jour 💚",
+      "hero": "plat",
+      "style": "Souriante et motivante.",
+      "voix": "Enregistre la recette pour le goûter, et abonne-toi pour une recette airfryer chaque jour !"
+    }
+  ],
+  "legende": "Des madeleines dorées avec LA bosse… à l'airfryer 😍 9 min de cuisson !\n\n🛒 Pour 12 madeleines :\n• 2 œufs\n• 80 g de sucre\n• 120 g de farine\n• 100 g de beurre fondu\n• ½ sachet de levure\n• Zeste d'1 citron\n\n👩‍🍳 Préparation :\n1. Fouette les œufs et le sucre jusqu'à ce que ça blanchisse\n2. Ajoute la farine et la levure\n3. Incorpore le beurre fondu et le zeste\n4. 30 min au frigo (le secret de la bosse !)\n5. Remplis les moules aux ¾\n6. Airfryer 180°C, 8 à 10 min\n\n💡 L'astuce : démoule-les tièdes et garde-les dans une boîte fermée\n\nEnregistre la recette pour le goûter 💚 Et dis-moi en commentaire quelle recette tu veux demain 👇",
+  "hashtags": [
+    "airfryer",
+    "recetteairfryer",
+    "madeleines",
+    "recettefacile",
+    "gouter",
+    "patisserie",
+    "healthyfry",
+    "airfryerfrance",
+    "foodtok",
+    "recettegourmande"
+  ]
+}
